@@ -64,6 +64,11 @@ def hotels():
     return({'hotels': serialized_hotels})
 
 
+@app.errorhandler(404)
+def not_found(e):
+  return render_template('index.html'), 404
+
+
 app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
         debug=False)
