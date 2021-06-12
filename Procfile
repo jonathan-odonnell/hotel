@@ -1,1 +1,1 @@
-web: npm client/start; python server/app.py; 
+web: npm start; python app.py; 
