@@ -22,7 +22,7 @@ class RoomProvider extends Component{
   };
   async componentDidMount() {
       try {
-        let response = await axios.get('http://localhost:5000/hotels/')
+        let response = await axios.get('/hotels/')
     
         let rooms = response.data.hotels;
 
