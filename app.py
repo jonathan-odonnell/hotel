@@ -1,16 +1,17 @@
 import os
 from flask import Flask, render_template
-from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_folder="build/static", template_folder="build")
 app.secret_key = os.environ.get("SECRET_KEY")
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URL')
+
+uri = os.getenv("DATABASE_URL")  # or other relevant config var
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
-if 'DEVELOPMENT' in os.environ:
-    CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 class Hotels(db.Model):
