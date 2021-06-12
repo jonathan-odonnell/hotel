@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__, static_folder="build/static", template_folder="build")
 app.secret_key = os.environ.get("SECRET_KEY")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URL')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 if 'DEVELOPMENT' in os.environ:
@@ -30,9 +31,13 @@ class Hotels(db.Model):
     def __repr__(self):
         return f'<Hotel {self.name}>'
 
+
 @app.route("/")
-def my_index():
+@app.route("/rooms/")
+@app.route("/rooms/<slug>/")
+def my_index(slug=None):
     return render_template('index.html')
+
 
 @app.route("/hotels/")
 def hotels():
@@ -58,7 +63,6 @@ def hotels():
     return({'hotels': serialized_hotels})
 
 
-if __name__ == "__master__":
-    app.run(host=os.environ.get("IP"),
-            port=int(os.environ.get("PORT")),
-            debug=True)
+app.run(host=os.environ.get("IP"),
+        port=int(os.environ.get("PORT")),
+        debug=False)
