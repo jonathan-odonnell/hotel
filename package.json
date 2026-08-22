@@ -2,6 +2,26 @@
   "name": "hotel",
   "version": "0.1.0",
   "private": true,
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "homepage": "https://github.com/jonathan-odonnell/hotel#readme",
+  "bugs": {
+    "url": "https://github.com/jonathan-odonnell/hotel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathan-odonnell/hotel.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "postinstall": "npm run build"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -16,16 +36,16 @@
     "styled-components": "^5.3.0",
     "web-vitals": "^1.0.1"
   },
-  "engines": {
-    "node": "10.15.2",
-    "npm": "6.4.1"
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
+    "babel-loader": "^10.1.1",
+    "jest": "^27.5.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "npm run build"
+  "engines": {
+    "node": "26.7.0",
+    "npm": "11.19.0"
   },
   "eslintConfig": {
     "extends": [
@@ -44,16 +64,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jonathan-odonnell/hotel.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jonathan-odonnell/hotel/issues"
   }
 }
