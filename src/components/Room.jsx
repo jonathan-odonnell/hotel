@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, } from "react-router-dom";
+import { Images } from "./Images";
 
 export default function Room({ room }) {
     const { name, slug, images, price } = room;
-    const imagesContext = require.context('../images', false);
+    const image = Images[images?.[0]] || Images["room-1.jpeg"]
     return (
       <article className="room">
         <div className="img-container">
-          <img src={imagesContext(`./${images[0] || 'room-1.jpeg'}`)} alt="single room" />
+          <img src={image} alt="single room" />
           <div className="price-top">
             <h6>${price}</h6>
             <p>per night</p>

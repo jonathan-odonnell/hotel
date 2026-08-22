@@ -5,7 +5,7 @@ import Banner from "../components/Banner";
 import Services from "../components/Services";
 import FeaturedRooms from "../components/FeaturedRooms";
 
-const home = () => {
+const Home = () => {
   return (
     <>
       <Hero>
@@ -13,7 +13,7 @@ const home = () => {
           title="luxurious rooms"
           subtitle="deluxe rooms starting at $299"
         >
-          <Link to="/rooms/" className="btn-primary">
+          <Link to="/rooms" className="btn-primary">
             our rooms
           </Link>
         </Banner>
@@ -24,4 +24,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

@@ -6,25 +6,25 @@ Component {
 state={
     services:[
         {
-            icon: <FaCocktail />,
+            icon: FaCocktail,
             title: "Free Cocktails",
             info:
               "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias molestias eius libero?"
           },
           {
-            icon: <FaHiking />,
+            icon: FaHiking,
             title: "Endless Hiking",
             info:
               "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias molestias eius libero?"
           },
           {
-            icon: <FaShuttleVan />,
+            icon: FaShuttleVan,
             title: "Free Shuttle",
             info:
               "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias molestias eius libero?"
           },
           {
-            icon: <FaBeer />,
+            icon: FaBeer,
             title: "Strongest Beer",
             info:
               "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias molestias eius libero?"
@@ -39,7 +39,7 @@ state={
                 <div className="services-center">
                     {this.state.services.map((item, index) => {
                         return <article key={index} className="service">
-                            <span>{item.icon}</span>
+                            <span><icon/></span>
                             <h6>{item.title}</h6>
                             <p>{item.info}</p>
                         </article>

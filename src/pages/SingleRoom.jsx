@@ -1,26 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
-import { Link } from "react-router-dom";
 import { RoomContext } from "../context";
+import { Images } from "../components/Images";
+import defaultImg from "../images/defaultBcg.jpeg";
 
-export default class SingleRoom extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      slug: this.props.match.params.slug,
-    };
-  }
-  static contextType = RoomContext;
-  render() {
-    const { getRoom } = this.context;
-    const room = getRoom(this.state.slug);
+export default function SingleRoom () {
+  const { slug } = useParams();
+  const { getRoom } = React.useContext(RoomContext);
+  const room = getRoom(slug);
 
     if (!room) {
       return (
         <div className="error">
           <h3> no such room could be found...</h3>
-          <Link to="/rooms/" className="btn-primary">
+          <Link to="/rooms" className="btn-primary">
             back to rooms
           </Link>
         </div>
@@ -38,21 +33,21 @@ export default class SingleRoom extends Component {
         pets,
         images
     } = room;
-    const [mainImg, ...defaultImg] = images;
-    const imagesContext = require.context('../images', false);
+    const mainImg = Images[images[0]] || defaultImg;
+    const gallery = images.slice(1).map(img => Images[img] || defaultImg);
     return(
         <>
-        <StyledHero img={imagesContext(`./${mainImg || 'default_Bcg.jpeg'}`)}>
+        <StyledHero img={mainImg}>
           <Banner title={`${name} room`}>
-            <Link to="/rooms/" className="btn-primary">
+            <Link to="/rooms" className="btn-primary">
               back to rooms
             </Link>
           </Banner>
         </StyledHero>
         <section className="single-room">
           <div className="single-room-images">
-            {defaultImg.map((item, index) => (
-              <img key={index} src={imagesContext(`./${item || 'default_Bcg.jpeg'}`)} alt={name} />
+            {gallery.map((src, index) => (
+              <img key={index} src={src} alt={name} />
             ))}
           </div>
           <div className="single-room-info">
@@ -83,4 +78,3 @@ export default class SingleRoom extends Component {
         </section>
       </>)
     }
-}

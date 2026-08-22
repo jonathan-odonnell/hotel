@@ -106,7 +106,23 @@ class RoomProvider extends Component{
       };
     render() {
         return(
-            <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom,  handleChange: this.handleChange} }>
+            <RoomContext.Provider value={{
+              rooms: this.state.rooms,
+              sortedRooms: this.state.sortedRooms,
+              featuredRooms: this.state.featuredRooms,
+              loading: this.state.loading,
+              type: this.state.type,
+              capacity: this.state.capacity,
+              price: this.state.price,
+              minPrice: this.state.minPrice,
+              maxPrice: this.state.maxPrice,
+              minSize: this.state.minSize,
+              maxSize: this.state.maxSize,
+              breakfast: this.state.breakfast,
+              pets: this.state.pets,
+              getRoom: this.getRoom,
+              handleChange: this.handleChange
+              } }>
                 {this.props.children}
             </RoomContext.Provider>
         )
