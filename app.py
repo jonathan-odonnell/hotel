@@ -3,7 +3,7 @@ import json
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__, static_folder="build/static", template_folder="build")
+app = Flask(__name__, static_folder="dist/assets", template_folder="dist")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 uri = os.getenv("DATABASE_URL")  # or other relevant config var
