@@ -39,9 +39,10 @@ export default class SingleRoom extends Component {
         images
     } = room;
     const [mainImg, ...defaultImg] = images;
+    const imagesContext = require.context('../images', false);
     return(
         <>
-        <StyledHero img={require(`../images/${mainImg || 'default_Bcg.jpeg'}`).default}>
+        <StyledHero img={imagesContext(`./${mainImg || 'default_Bcg.jpeg'}`)}>
           <Banner title={`${name} room`}>
             <Link to="/rooms/" className="btn-primary">
               back to rooms
@@ -51,7 +52,7 @@ export default class SingleRoom extends Component {
         <section className="single-room">
           <div className="single-room-images">
             {defaultImg.map((item, index) => (
-              <img key={index} src={require(`../images/${item}`).default} alt={name} />
+              <img key={index} src={imagesContext(`./${item || 'default_Bcg.jpeg'}`)} alt={name} />
             ))}
           </div>
           <div className="single-room-info">
