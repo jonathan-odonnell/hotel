@@ -33,30 +33,6 @@ class Hotels(db.Model):
     def __repr__(self):
         return f'<Hotel {self.name}>'
 
-with app.app_context():
-    db.create_all()
-    hotels = db.session.execute(db.select(Hotels)).scalars()
-    if not hotels:
-        data = json.loads(open('data.json').read())
-        for i in data:
-            hotel = Hotels(
-                id=i["id"],
-                name=i["name"],
-                slug=i["slug"],
-                type=i["type"],
-                price=i["price"],
-                size=i["size"],
-                capacity=i["capacity"],
-                pets=i["pets"],
-                breakfast=i["breakfast"],
-                featured=i["featured"],
-                description=i["description"],
-                extras=i["extras"],
-                images=i["images"]
-            )
-            db.session.add(hotel)
-    db.session.commit()
-
 
 with app.app_context():
     db.create_all()
