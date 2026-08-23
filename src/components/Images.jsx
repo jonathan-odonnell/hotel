@@ -10,6 +10,10 @@ import room9 from "../images/room-9.jpeg";
 import room10 from "../images/room-10.jpeg";
 import room11 from "../images/room-11.jpeg";
 import room12 from "../images/room-12.jpeg";
+import details1 from "../images/details-1.jpeg";
+import details2 from "../images/details-2.jpeg";
+import details3 from "../images/details-3.jpeg";
+import details4 from "../images/details-4.jpeg";
 
 export const Images = {
   "room-1.jpeg": room1,
@@ -23,5 +27,9 @@ export const Images = {
   "room-9.jpeg": room9,
   "room-10.jpeg": room10,
   "room-11.jpeg": room11,
-  "room-12.jpeg": room12  
+  "room-12.jpeg": room12,
+  "details-1.jpeg": details1,
+  "details-2.jpeg": details2,
+  "details-3.jpeg": details3,
+  "details-4.jpeg": details4
 };
