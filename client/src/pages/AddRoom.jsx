@@ -38,14 +38,19 @@ const AddRoom = () => {
     try {
         e.preventDefault()
         formData = new FormData(e.target)
-        let data = Object.fromEntries(formData.entries());
-        data.extras = formData.getAll("extras");
-        data.breakfast = formData.get("breakfast") === "on";
-        data.pets = formData.get("pets") === "on";
-        data.featured = formData.get("featured")
-        let response = await axios.post("/api/rooms", data);
+        formData.set("breakfast", formData.get("breakfast") === "on");
+        formData.set("pets", formData.get("pets") === "on");
+        formData.set("featured", formData.get("featured") === "on");
+        formData.delete("extras");
+        formData.append("extras", JSON.stringify(extras));
+
+        let response = await axios.post("/api/room", formData, { 
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+
         setRooms(prev => [...prev, response.data]);
         navigate('/rooms');
+
     } catch (err) {
         setError(err.message);
     }
