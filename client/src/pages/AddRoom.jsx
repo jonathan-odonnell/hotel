@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
-import Services from "../components/Services";
-import FeaturedRooms from "../components/FeaturedRooms";
 
-const Home = () => {
+const AddRoom = () => {
   return (
         <Hero hero="add-room-hero">
         <Banner title="add room">
@@ -16,4 +14,4 @@ const Home = () => {
     )
 };
 
-export default Home;
+export default AddRoom;
