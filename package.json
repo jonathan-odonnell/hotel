@@ -13,7 +13,6 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "module",
   "main": "vite.config.js",
   "scripts": {
     "start": "vite",
@@ -22,10 +21,15 @@
     "serve": "vite serve"
   },
   "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jasmine": "^7.0.0",
+    "pg": "^8.23.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.6",
-    "styled-components": "^6.5.3"
+    "styled-components": "^6.5.3",
+    "supertest": "^7.2.2"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",
