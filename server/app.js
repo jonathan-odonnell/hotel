@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 const port = 3000;
 const fs = require('fs');
 const pg = require('pg');
@@ -38,6 +40,37 @@ app.get('/api/hotels', async (req, res) => {
         });
     }
 })
+
+app.post('/api/room', upload.single('image'), async (req, res) => {
+    const {
+        name,
+        type,
+        price,
+        size,
+        capacity,
+        pets,
+        breakfast,
+        featured,
+        description, 
+    } = req.body;
+    const extras = JSON.parse(req.body.extras);
+    const image = req.file.originalname
+    const slug = name.toLower().replace(" ", "-")
+     try {
+        const results = await db.query(
+            `insert into hotels (
+            name, slug, type, price, size, capacity, pets, breakfast, featured, description, extras, image)
+            values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning *`,
+            [name, slug, type, price, size, capacity, pets, breakfast, featured, description, extras, image])
+        res.status(201).json({
+            hotels: results.rows[0]
+        })
+    } catch (err) {
+        res.status(500);
+    }
+})
+
+
 
 app.get('/\{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
