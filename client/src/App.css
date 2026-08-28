@@ -548,6 +548,10 @@ input[type="file"]{
   margin-right: 0.8rem;
 }
 
+.room-form .btn-primary {
+  padding: 0.6rem 1.2rem;
+}
+
 @media screen and (min-width: 776px) {
   .room-form {
     width: 90vw;
@@ -558,5 +562,8 @@ input[type="file"]{
     width: 95vw;
     max-width: 1170px;
   }
+}
+.btn-center {
+  text-align: center;
 }
 /* end of room form */

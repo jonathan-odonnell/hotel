@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 
 const AddRoom = () => {
+    let navigate = useNavigate();
   // types
   let types = ["single", "double", "family", "presidential"]
   types = types.map((item, index) => (
@@ -31,6 +32,22 @@ const AddRoom = () => {
       {item}
     </option>
   ));
+  let handleForm = async (e) => {
+    try {
+        e.preventDefault()
+        formData = new FormData(e.target)
+        let data = Object.fromEntries(formData.entries());
+        data.extras = formData.getAll("extras");
+        data.breakfast = formData.get("breakfast") === "on";
+        data.pets = formData.get("pets") === "on";
+        data.featured = formData.get("featured")
+        let response = await axios.post("/api/rooms", data);
+        setRooms(prev => [...prev, response.data]);
+        navigate('/rooms');
+    } catch (err) {
+        setError(err.message);
+    }
+  }
   return (
     <>
         <Hero hero="add-room-hero">
@@ -164,7 +181,13 @@ const AddRoom = () => {
             accept="image/*"
           />
         </div>
+      </div>
         {/* image */}
+        {/* button */}
+      <div className="form-group btn-center">
+        <button className="btn-primary" type="submit" onSubmit={handleForm}>
+            add room
+        </button>
         </div>
       </form>
     </>
