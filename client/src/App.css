@@ -52,6 +52,22 @@ h6 {
   font-weight: bold;
   margin-bottom: 1.5em;
 }
+input, 
+select, 
+textarea {
+  padding: 0.2rem;
+  border: 1.5px solid var(--mainBlack);
+}
+
+textarea {
+  height: 10rem;
+  width: 100%;
+}
+
+input[type="file"]{
+  padding: 0.2rem 0;
+  border: none;
+}
 
 .btn-primary {
   display: inline-block;
@@ -499,7 +515,7 @@ h6 {
   border-radius: 0.3rem;
   margin-right: 0.3rem;
 }
-.single-extra label {
+.filter-form .single-extra label {
   display: inline-block;
   font-size: 0.8rem;
   margin-left: 0.5rem;
@@ -516,3 +532,31 @@ h6 {
   }
 }
 /* end of rooms fitler*/
+/* room form */
+.room-form {
+  padding: 5rem 0;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.room-form .form-group {
+  padding: 1rem 0;
+}
+
+.room-form .single-extra label {
+  display: inline-block;
+  margin-right: 0.8rem;
+}
+
+@media screen and (min-width: 776px) {
+  .room-form {
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .room-form {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* end of room form */
