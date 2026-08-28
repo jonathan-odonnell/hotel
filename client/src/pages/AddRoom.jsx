@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 
 const AddRoom = () => {
     let navigate = useNavigate();
+    let [error, setError] = useState(null);
   // types
   let types = ["single", "double", "family", "presidential"]
   types = types.map((item, index) => (
@@ -57,7 +59,8 @@ const AddRoom = () => {
           </Link>
         </Banner>
       </Hero>
-      <form className="room-form">
+      {error && <div className="error"><p>{error}</p></div>}
+      <form className="room-form" onSubmit={handleForm}>
         {/* name */}
         <div className="form-group">
           <label htmlFor="name">room name</label>
@@ -66,6 +69,7 @@ const AddRoom = () => {
             name="name"
             id="type"
             className="form-control"
+            required
           >
           </input>
         </div>
@@ -77,6 +81,7 @@ const AddRoom = () => {
             name="type"
             id="type"
             className="form-control"
+            required
           >
             {types}
           </select>
@@ -92,6 +97,7 @@ const AddRoom = () => {
             className="form-control"
             min="100"
             max="1000"
+            required
           />
         </div>
         {/* end price */}
@@ -105,6 +111,7 @@ const AddRoom = () => {
             className="form-control"
             min="200"
             max="1000"
+            required
           />
         </div>
         {/* end price */}
@@ -115,6 +122,7 @@ const AddRoom = () => {
             name="capacity"
             id="capacity"
             className="form-control"
+            required
           >
             {guests}
           </select>
@@ -156,6 +164,7 @@ const AddRoom = () => {
           <textarea 
             name="description"
             id="description"
+            required
           />
         {/* end description */}
         {/* extras  */}
@@ -166,6 +175,7 @@ const AddRoom = () => {
             id="extras"
             className="form-control"
             multiple
+            required
           >
             {extras}
           </select>
@@ -185,7 +195,7 @@ const AddRoom = () => {
         {/* image */}
         {/* button */}
       <div className="form-group btn-center">
-        <button className="btn-primary" type="submit" onSubmit={handleForm}>
+        <button className="btn-primary" type="submit">
             add room
         </button>
         </div>
