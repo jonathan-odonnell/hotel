@@ -236,6 +236,9 @@ const RoomForm = ({ room }) => {
                     accept="image/*"
                     required={room ? false : true}
                     />
+                    {room && <div className="current-img">
+                        <small>Current image: {room.images[0]}</small>
+                    </div>}
                 </div>
             </div>
             {/* image */}
