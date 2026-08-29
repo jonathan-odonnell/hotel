@@ -52,13 +52,6 @@ class RoomProvider extends Component{
       };
     };
   
-    // update sort
-    updateSort = sort => {
-      this.setState({
-        sort
-      });
-    };
-  
     // get room
     getRoom = slug => {
         let tempRooms = [...this.state.rooms];
@@ -125,7 +118,8 @@ class RoomProvider extends Component{
           minSize,
           maxSize,
           breakfast,
-          pets
+          pets,
+          sort
         } = this.state;
     
         let tempRooms = [...rooms];
@@ -164,37 +158,37 @@ class RoomProvider extends Component{
 
         // sort by default
         if (sort === "all") {
-          tempRooms = tempRooms.sort(a, b => {
-            return a.id - b.id
-          })
+          tempRooms = tempRooms.sort((a, b) => 
+            a.id - b.id
+          )
         }
 
         // sort by name asc
-        if (sort = "name_asc") {
-          tempRooms = tempRooms.sort(a, b => {
-            return a.name.localeCompare(b.name)
-          })
+        if (sort === "name_asc") {
+          tempRooms = tempRooms.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          )
         }
 
         // sort by name desc
-        if (sort = "name_desc") {
-          tempRooms = tempRooms.sort(a, b => {
-            return b.name.localeCompare(a.name)
-          })
+        if (sort === "name_desc") {
+          tempRooms = tempRooms.sort((a, b) =>
+            b.name.localeCompare(a.name)
+          )
         }
 
         // sort by price asc
-        if (sort = "price_asc") {
-          tempRooms = tempRooms.sort(a, b => {
-            return a.price - b.price
-          })
+        if (sort === "price_asc") {
+          tempRooms = tempRooms.sort((a, b) =>
+            a.price - b.price
+          )
         }
 
         // sort by price desc
-        if (sort = "price_desc") {
-          tempRooms = tempRooms.sort(a, b => {
-            return b.price - a.price
-          })
+        if (sort === "price_desc") {
+          tempRooms = tempRooms.sort((a, b) =>
+            b.price - a.price
+          )
         }
 
         // set sorted rooms 
@@ -218,6 +212,7 @@ class RoomProvider extends Component{
               maxSize: this.state.maxSize,
               breakfast: this.state.breakfast,
               pets: this.state.pets,
+              sort: this.state.sort,
               error: this.state.error,
               getRoom: this.getRoom,
               addRoom: this.addRoom,
