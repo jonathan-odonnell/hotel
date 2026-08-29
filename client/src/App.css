@@ -457,7 +457,7 @@ input[type="file"]{
 /* end of single room*/
 /* roomlist */
 .roomslist {
-  padding: 5rem 0;
+  padding-bottom: 5rem;
 }
 .roomslist-center {
   width: 80vw;
@@ -488,7 +488,7 @@ input[type="file"]{
   width: 60vw;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(202px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
   grid-row-gap: 2rem;
   grid-column-gap: 40px;
 }
@@ -519,6 +519,10 @@ input[type="file"]{
   display: inline-block;
   font-size: 0.8rem;
   margin-left: 0.5rem;
+}
+
+.filter-form select {
+  text-transform: capitalize;
 }
 @media screen and (min-width: 776px) {
   .filter-form {

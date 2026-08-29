@@ -9,7 +9,7 @@ const getUnique = (items, value) => {
 };
 
 const RoomsFilter = ({ rooms }) => {
-  // react hooks
+  // context hooks
   const context = useContext(RoomContext);
   const {
     handleChange,
@@ -21,31 +21,60 @@ const RoomsFilter = ({ rooms }) => {
     minSize,
     maxSize,
     breakfast,
-    pets
+    pets,
+    sort,
   } = context;
 
-  // get unique types
+  // sort options
+  let sorts = {
+    "default": "all",
+    "name a-z": "name_asc",
+    "name z-a": "name_desc",
+    "price low-high": "price_asc",
+    "price high-low": "price_desc",
+  }
+  sorts = Object.entries(sorts).map(([key, value]) => (
+    <option key={key} value={value}>
+      {key}
+    </option>
+  ));
+
+  // type optionss
   let types = getUnique(rooms, "type");
-  // add all
   types = ["all", ...types];
-  // map to jsx
   types = types.map((item, index) => (
     <option key={index} value={item}>
       {item}
     </option>
   ));
-  // get unique capacity
+
+  // capacity options
   let people = getUnique(rooms, "capacity");
   people = people.map((item, index) => (
     <option key={index} value={item}>
       {item}
     </option>
   ));
+  
   return (
     <section className="filter-container">
       <Title title="search rooms" />
       <form className="filter-form">
-        {/* select type */}
+        {/* sort */}
+        <div className="form-group">
+          <label htmlFor="sort">sort</label>
+          <select
+            name="sort"
+            id="sort"
+            onChange={handleChange}
+            className="form-control"
+            value={sort}
+          >
+            {sorts}
+          </select>
+        </div>
+        {/* end of sort */}
+        {/* type */}
         <div className="form-group">
           <label htmlFor="type">room type</label>
           <select
@@ -58,7 +87,7 @@ const RoomsFilter = ({ rooms }) => {
             {types}
           </select>
         </div>
-        {/* end of select type */}
+        {/* end of type */}
         {/* guests  */}
         <div className="form-group">
           <label htmlFor="capacity">Guests</label>
