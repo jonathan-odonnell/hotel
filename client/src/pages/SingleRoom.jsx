@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../context";
@@ -7,10 +7,11 @@ import { Images } from "../components/Images";
 import defaultImg from "../images/defaultBcg.jpeg";
 
 export default function SingleRoom () {
-  const { getRoom } = React.useContext(RoomContext);
+  const { getRoom, deleteRoom } = React.useContext(RoomContext);
+  const navigate = useNavigate();
   const { slug } = useParams();
   const room = getRoom(slug);
-  console.log(room);
+  const [error, setError] = useState(null)
 
   if (!room) {
     return (
@@ -24,6 +25,7 @@ export default function SingleRoom () {
   }
       
   const {
+      id,
       name,
       description,
       capacity,
@@ -37,7 +39,17 @@ export default function SingleRoom () {
 
   const mainImg = Images[images?.[0]] || defaultImg;
   const gallery = images.slice(1).map(img => Images[img]) || defaultImg;
-  console.log(gallery);
+ 
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/rooms/${id}`);
+      deleteRoom(id)
+      navigate('/rooms')
+    } catch (err) {
+      setError(err)
+    }
+  }
+
   return(
       <>
       <StyledHero img={mainImg}>
