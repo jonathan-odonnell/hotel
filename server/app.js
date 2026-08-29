@@ -183,6 +183,16 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
     }
 })
 
+app.delete('/api/rooms/:id', async (req, res) => {
+    try {
+        await db.query('delete from hotels where id = $1', [req.params.id])
+        res.status(204);
+    } catch (err) {
+        res.status(500).json({error: "Failed to delete room"});
+    }
+});
+
+
 app.get('/\{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
