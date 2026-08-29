@@ -36,7 +36,7 @@ app.get('/api/hotels', async (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            error: err
+            error: "Failed to get rooms"
         });
     }
 })
@@ -105,7 +105,9 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
             room: results.rows[0]
         })
     } catch (err) {
-        res.status(500);
+        res.status(500).json({
+            error: "Failed to add room"
+        });
     }
 })
 
@@ -179,7 +181,9 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
             room: results.rows[0]
         })
     } catch (err) {
-        res.status(500);
+        res.status(500).json({
+            error: "Failed to update room"
+        });
     }
 })
 
@@ -188,7 +192,9 @@ app.delete('/api/rooms/:id', async (req, res) => {
         await db.query('delete from hotels where id = $1', [req.params.id])
         res.status(204);
     } catch (err) {
-        res.status(500).json({error: "Failed to delete room"});
+        res.status(500).json({
+            error: "Failed to delete room"
+        });
     }
 });
 
