@@ -41,7 +41,7 @@ app.get('/api/hotels', async (req, res) => {
     }
 })
 
-app.post('/api/room', upload.single('image'), async (req, res) => {
+app.post('/api/rooms', upload.single('image'), async (req, res) => {
 
     const {
         name,
@@ -109,7 +109,7 @@ app.post('/api/room', upload.single('image'), async (req, res) => {
     }
 })
 
-app.put('/api/room/:id', upload.single('image'), async (req, res) => {
+app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
     
     let id = req.params.id
 
