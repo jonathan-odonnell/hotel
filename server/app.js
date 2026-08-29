@@ -28,11 +28,11 @@ db.connect().catch(err => {
   console.error('DB connection error:', err);
 });
 
-app.get('/api/hotels', async (req, res) => {
+app.get('/api/rooms', async (req, res) => {
     try {
         const results = await db.query('select * from hotels')
         res.status(200).json({
-            hotels: results.rows
+            rooms: results.rows
         })
     } catch (err) {
         res.status(500).json({
