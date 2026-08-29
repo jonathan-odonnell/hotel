@@ -55,7 +55,7 @@ app.post('/api/room', upload.single('image'), async (req, res) => {
     } = req.body;
     const extras = JSON.parse(req.body.extras);
     const image = req.file.originalname
-    const slug = name.toLower().replace(" ", "-")
+    const slug = name.toLower().replaceAll(" ", "-")
      try {
         const results = await db.query(
             `insert into hotels (
@@ -70,7 +70,79 @@ app.post('/api/room', upload.single('image'), async (req, res) => {
     }
 })
 
+app.put('/api/room/:id', upload.single('image'), async (req, res) => {
+    
+    let id = req.params.id
 
+    let {
+        name,
+        type,
+        price,
+        size,
+        capacity,
+        pets,
+        breakfast,
+        featured,
+        description, 
+    } = req.body;
+
+    let extras = JSON.parse(req.body.extras);
+    
+    let image = req.file ? req.file.originalname : null;
+
+    let slug = name.toLowerCase().replaceAll(" ", "-");
+
+    let fields = [
+        "name = $1",
+        "slug = $2",
+        "type = $3",
+        "price = $4",
+        "size = $5",
+        "capacity = $6",
+        "pets = $7",
+        "breakfast = $8",
+        "featured = $9",
+        "description = $10",
+        "extras = $11"
+    ];
+
+    let values = [
+        name,
+        slug,
+        type,
+        price,
+        size,
+        capacity,
+        pets,
+        breakfast,
+        featured,
+        description,
+        extras
+    ];
+
+    if (image) {
+        fields.push(`image = $${fields.length + 1}`);
+        values.push(req.file.originalname);
+    }
+
+    values.push(id);
+
+    let  sql = `
+        UPDATE hotels
+        SET ${fields.join(", ")}
+        WHERE id = $${values.length}
+        RETURNING *
+    `;
+
+     try {
+        const results = await db.query(sql, values)
+        res.status(200).json({
+            room: results.rows[0]
+        })
+    } catch (err) {
+        res.status(500);
+    }
+})
 
 app.get('/\{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
