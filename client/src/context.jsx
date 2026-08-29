@@ -35,7 +35,6 @@ class RoomProvider extends Component{
           featuredRooms,
           sortedRooms: rooms,
           loading: false,
-
           price: maxPrice,
           maxPrice,
           maxSize
@@ -48,6 +47,18 @@ class RoomProvider extends Component{
         let tempRooms = [...this.state.rooms];
         const room = tempRooms.find(room => room.slug === slug);
         return room;
+    };
+    addRoom = room => {
+      this.setState(prev => ({
+        rooms: [...prev.rooms, room]
+      }))
+    };
+    updateRoom = updatedRoom => {
+      this.setState(prev => ({
+        rooms: prev.rooms.map(room =>
+          room.id === updatedRoom.id ? updatedRoom : room
+        )
+      }))
     };
     handleChange = event => {
         const target = event.target;
@@ -121,6 +132,8 @@ class RoomProvider extends Component{
               breakfast: this.state.breakfast,
               pets: this.state.pets,
               getRoom: this.getRoom,
+              addRoom: this.addRoom,
+              updateRoom: this.updateRoom,
               handleChange: this.handleChange
               } }>
                 {this.props.children}
