@@ -4,6 +4,7 @@ import { RoomContext } from "../context";
 import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 import RoomForm from "../components/RoomForm";
+import RoomFormError from "../components/RoomFormError";
 
 const AddRoom = () => {
   const { error } = React.useContext(RoomContext);
@@ -16,7 +17,7 @@ const AddRoom = () => {
           </Link>
         </Banner>
       </Hero>
-      <RoomFormError error={error}/>
+      {error && <RoomFormError error={error}/>}
       <RoomForm />
     </>
     )

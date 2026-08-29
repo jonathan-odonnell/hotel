@@ -33,7 +33,7 @@ const UpdateRoom = () => {
           </Link>
         </Banner>
       </StyledHero>
-      <RoomFormError error={error}/>
+      {error && <RoomFormError error={error}/>}
       <RoomForm room={room} />
     </>
   )

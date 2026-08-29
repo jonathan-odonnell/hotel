@@ -1,8 +1,8 @@
 const RoomFormError = ({ error }) => {
   return (
-    <>
-      {error && <div className="error"><p>{error}</p></div>}
-  </>
+    <div className="error">
+      <p>{error}</p>
+    </div>
   )
 };
 
