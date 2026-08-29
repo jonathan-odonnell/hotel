@@ -5,8 +5,6 @@ import Banner from "../components/Banner";
 import StyledHero from "../components/StyledHero";
 import RoomForm from "../components/RoomForm";
 import RoomFormError from "../components/RoomFormError";
-import { Images } from "../components/Images";
-import defaultImg from "../images/defaultBcg.jpeg";
 
 
 const UpdateRoom = () => {
@@ -24,7 +22,7 @@ const UpdateRoom = () => {
       </div>
     );
   }
-  const mainImg = Images[room.images?.[0]] || defaultImg;
+  const mainImg = `/images/${room.images[0]}` || "/images/defaultBcg.jpeg"
 
   return (
     <>

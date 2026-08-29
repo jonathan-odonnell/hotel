@@ -1,11 +1,10 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { Link, } from "react-router-dom";
-import { Images } from "./Images";
+import { Link } from "react-router-dom";
+import defaultImg from "/images/room-1.jpeg";
 
 export default function Room({ room }) {
     const { name, slug, images, price } = room;
-    const image = Images[images?.[0]] || Images["room-1.jpeg"]
+    const image = `/images/${room.images[0]}` || defaultImg
     return (
       <article className="room">
         <div className="img-container">
