@@ -42,6 +42,7 @@ app.get('/api/hotels', async (req, res) => {
 })
 
 app.post('/api/room', upload.single('image'), async (req, res) => {
+
     const {
         name,
         type,
@@ -53,17 +54,55 @@ app.post('/api/room', upload.single('image'), async (req, res) => {
         featured,
         description, 
     } = req.body;
+
     const extras = JSON.parse(req.body.extras);
-    const image = req.file.originalname
-    const slug = name.toLower().replaceAll(" ", "-")
+
+    const image = req.file.originalname;
+
+    const slug = name.toLowerCase().replaceAll(" ", "-");
+
+    let fields = [
+        "name",
+        "slug",
+        "type",
+        "price",
+        "size",
+        "capacity",
+        "pets",
+        "breakfast",
+        "featured",
+        "description",
+        "extras",
+        "image"
+    ]
+
+    let placeholders = fields.map((value, index) => `$${index + 1}`);
+
+    let values = [
+        name,
+        slug,
+        type,
+        price,
+        size,
+        capacity,
+        pets,
+        breakfast,
+        featured,
+        description,
+        extras,
+        image
+    ];
+
+    let sql = `
+        insert into hotels (${fields.join(", ")}) 
+        values(${placeholders.join(", ")}) 
+        returning *
+    `;
+
      try {
-        const results = await db.query(
-            `insert into hotels (
-            name, slug, type, price, size, capacity, pets, breakfast, featured, description, extras, image)
-            values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) returning *`,
-            [name, slug, type, price, size, capacity, pets, breakfast, featured, description, extras, image])
+        let results = await db.query(sql, values)
         res.status(201).json({
-            hotels: results.rows[0]
+            room: results.rows[0]
         })
     } catch (err) {
         res.status(500);
@@ -127,11 +166,11 @@ app.put('/api/room/:id', upload.single('image'), async (req, res) => {
 
     values.push(id);
 
-    let  sql = `
-        UPDATE hotels
-        SET ${fields.join(", ")}
-        WHERE id = $${values.length}
-        RETURNING *
+    let sql = `
+        update hotels
+        set ${fields.join(", ")}
+        where id = $${values.length}
+        returning *
     `;
 
      try {
