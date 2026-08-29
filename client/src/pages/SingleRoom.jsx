@@ -7,11 +7,10 @@ import { Images } from "../components/Images";
 import defaultImg from "../images/defaultBcg.jpeg";
 
 export default function SingleRoom () {
-  const { getRoom, deleteRoom } = React.useContext(RoomContext);
+  const { getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
   const navigate = useNavigate();
   const { slug } = useParams();
   const room = getRoom(slug);
-  const [error, setError] = useState(null)
 
   if (!room) {
     return (
@@ -44,9 +43,10 @@ export default function SingleRoom () {
     try {
       await axios.delete(`/api/rooms/${id}`);
       deleteRoom(id)
+      updateError(null)
       navigate('/rooms')
     } catch (err) {
-      setError(err)
+      updateError(err)
     }
   }
 

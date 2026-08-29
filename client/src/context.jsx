@@ -18,7 +18,8 @@ class RoomProvider extends Component{
     minSize: 0,
     maxSize: 0,
     breakfast: false,
-    pets: false
+    pets: false,
+    error: null
   };
   async componentDidMount() {
       try {
@@ -37,10 +38,13 @@ class RoomProvider extends Component{
           loading: false,
           price: maxPrice,
           maxPrice,
-          maxSize
+          maxSize,
+          error: null,
         });
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        this.setState({
+          error: err
+        })
       }
     }
     getRoom = slug => {
@@ -69,6 +73,11 @@ class RoomProvider extends Component{
         })
       );
     }
+    updateError = value => {
+      this.setState({
+        error: value
+      })
+    };
     handleChange = event => {
         const target = event.target;
         const value =  target.type === "checkbox" ? target.checked : target.value;
@@ -140,9 +149,11 @@ class RoomProvider extends Component{
               maxSize: this.state.maxSize,
               breakfast: this.state.breakfast,
               pets: this.state.pets,
+              error: this.state.error,
               getRoom: this.getRoom,
               addRoom: this.addRoom,
               updateRoom: this.updateRoom,
+              updateError: this.updateError,
               handleChange: this.handleChange
               } }>
                 {this.props.children}

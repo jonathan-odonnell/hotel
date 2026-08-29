@@ -4,12 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import Banner from "../components/Banner";
 import StyledHero from "../components/StyledHero";
 import RoomForm from "../components/RoomForm";
+import RoomFormError from "../components/RoomFormError";
 import { Images } from "../components/Images";
 import defaultImg from "../images/defaultBcg.jpeg";
 
 
 const UpdateRoom = () => {
-  const { getRoom } = React.useContext(RoomContext);
+  const { getRoom, error } = React.useContext(RoomContext);
   const { slug } = useParams();
   const room = getRoom(slug);
 
@@ -34,6 +35,7 @@ const UpdateRoom = () => {
           </Link>
         </Banner>
       </StyledHero>
+      <RoomFormError error={error}/>
       <RoomForm room={room} />
     </>
   )
