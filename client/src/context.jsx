@@ -60,6 +60,15 @@ class RoomProvider extends Component{
         )
       }))
     };
+    deleteRoom = id => {
+      this.setState(
+        prev => ({
+          rooms: prev.rooms.filter(room => {
+            return room.id !== id 
+          })
+        })
+      );
+    }
     handleChange = event => {
         const target = event.target;
         const value =  target.type === "checkbox" ? target.checked : target.value;
