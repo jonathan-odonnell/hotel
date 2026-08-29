@@ -3,6 +3,7 @@ import { RoomContext } from "../context";
 import { Link, useParams } from "react-router-dom";
 import Banner from "../components/Banner";
 import StyledHero from "../components/StyledHero";
+import RoomForm from "../components/RoomForm";
 import { Images } from "../components/Images";
 import defaultImg from "../images/defaultBcg.jpeg";
 
@@ -22,28 +23,19 @@ const UpdateRoom = () => {
       </div>
     );
   }
-
-  const {
-    name,
-    description,
-    capacity,
-    size,
-    price,
-    extras,
-    breakfast,
-    pets,
-    images
-  } = room;
-  const mainImg = Images[images?.[0]] || defaultImg;
+  const mainImg = Images[room.images?.[0]] || defaultImg;
 
   return (
-    <StyledHero img={mainImg}>
-      <Banner title="update room">
-        <Link to="/rooms" className="btn-primary">
-          return to rooms
-        </Link>
-      </Banner>
-    </StyledHero>
+    <>
+      <StyledHero img={mainImg}>
+        <Banner title="update room">
+          <Link to="/rooms" className="btn-primary">
+            return to rooms
+          </Link>
+        </Banner>
+      </StyledHero>
+      <RoomForm room={room} />
+    </>
   )
 };
 

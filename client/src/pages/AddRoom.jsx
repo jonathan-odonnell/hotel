@@ -6,7 +6,7 @@ import RoomForm from "../components/RoomForm";
 const AddRoom = () => {
   return (
     <>
-        <Hero hero="add-room-hero">
+      <Hero hero="add-room-hero">
         <Banner title="add room">
           <Link to="/rooms" className="btn-primary">
             return to rooms

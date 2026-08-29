@@ -1,14 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { RoomContext } from "../context";
 import { useNavigate } from "react-router-dom";
 import RoomFormError from "./RoomFormError";
+import axios from "axios";
 
 
 const RoomForm = ({ room }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const { addRoom, updateRoom } = React.useContext(RoomContext);
   // errors
-  let [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   // room
   let {
+    id =  "",
     name = "",
     type = "",
     price = "",
@@ -48,22 +52,42 @@ const RoomForm = ({ room }) => {
       {item}
     </option>
   ));
-  let handleForm = async (e) => {
+  let handleAddRoom = async (e) => {
     try {
         e.preventDefault()
-        formData = new FormData(e.target)
+        let formData = new FormData(e.target);
         formData.set("breakfast", formData.get("breakfast") === "on");
         formData.set("pets", formData.get("pets") === "on");
         formData.set("featured", formData.get("featured") === "on");
         formData.delete("extras");
         formData.append("extras", JSON.stringify(extras));
 
-        let response = await axios.post("/api/room", formData, { 
+        const response = await axios.post("/api/rooms", formData, { 
             headers: { "Content-Type": "multipart/form-data" }
         });
 
-        setRooms(prev => [...prev, response.data]);
+        addRoom(response.data.room);
         navigate('/rooms');
+
+    } catch (err) {
+        setError(err.message);
+    }
+  }
+  let handleUpdateRoom = async (e) => {
+    try {
+        e.preventDefault()
+        let formData = new FormData(e.target);
+        formData.set("breakfast", formData.get("breakfast") === "on");
+        formData.set("pets", formData.get("pets") === "on");
+        formData.set("featured", formData.get("featured") === "on");
+        formData.delete("extras");
+        formData.append("extras", JSON.stringify(extras));
+
+        const response = await axios.put(`/api/rooms/${id}`, formData, { 
+            headers: { "Content-Type": "multipart/form-data" }
+        });
+        updateRoom(response.data.room);
+        navigate(`/rooms/${response.data.room.slug}`);
 
     } catch (err) {
         setError(err.message);
@@ -72,7 +96,7 @@ const RoomForm = ({ room }) => {
   return (
     <>
       <RoomFormError error={error} />
-      <form className="room-form" onSubmit={handleForm}>
+      <form className="room-form" onSubmit={room ? handleUpdateRoom : handleAddRoom}>
         {/* name */}
         <div className="form-group">
           <label htmlFor="name">room name</label>
@@ -211,6 +235,7 @@ const RoomForm = ({ room }) => {
             name="image"
             id="image" 
             accept="image/*"
+            required={room ? false : true}
           />
         </div>
       </div>
@@ -218,7 +243,7 @@ const RoomForm = ({ room }) => {
         {/* button */}
       <div className="form-group btn-center">
         <button className="btn-primary" type="submit">
-            add room
+            {room ? "update room" : "add room"}
         </button>
         </div>
       </form>
