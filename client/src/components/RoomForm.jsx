@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import RoomFormError from "./RoomFormError";
 
 
 const RoomForm = ({ room }) => {
@@ -70,7 +71,7 @@ const RoomForm = ({ room }) => {
   }
   return (
     <>
-      {error && <div className="error"><p>{error}</p></div>}
+      <RoomFormError error={error} />
       <form className="room-form" onSubmit={handleForm}>
         {/* name */}
         <div className="form-group">
