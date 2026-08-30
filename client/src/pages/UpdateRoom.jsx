@@ -31,8 +31,8 @@ const UpdateRoom = () => {
     <>
       <StyledHero img={mainImg}>
         <Banner title="update room">
-          <Link to="/rooms" className="btn-primary">
-            return to rooms
+          <Link to={`/rooms/${slug}`} className="btn-primary">
+            return to room
           </Link>
         </Banner>
       </StyledHero>
