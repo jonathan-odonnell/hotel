@@ -30,7 +30,7 @@ db.connect().catch(err => {
 
 app.get('/api/rooms', async (req, res) => {
     try {
-        const results = await db.query('select * from hotels')
+        const results = await db.query('select * from hotels order by id')
         res.status(200).json({
             rooms: results.rows
         })
