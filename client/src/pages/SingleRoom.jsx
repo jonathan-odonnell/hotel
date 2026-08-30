@@ -38,7 +38,7 @@ export default function SingleRoom () {
 
   const defaultImg = "defaultBcg_l0nmsz.jpg"
 
-  const mainImg = `${baseUrl + room.images[0]}` || `${baseUrl + defaultImg}`
+  const mainImg = `${baseUrl + images[0]}` || `${baseUrl + defaultImg}`
   
   const gallery = images.slice(1).map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
  
