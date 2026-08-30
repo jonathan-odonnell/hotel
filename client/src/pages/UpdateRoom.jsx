@@ -22,7 +22,10 @@ const UpdateRoom = () => {
       </div>
     );
   }
-  const mainImg = `/images/${room.images[0]}` || "/images/defaultBcg.jpeg"
+
+  const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+
+  const mainImg = `${baseUrl + room.images[0]}` || `${baseUrl + "defaultBcg_l0nmsz.jpg"}`
 
   return (
     <>
