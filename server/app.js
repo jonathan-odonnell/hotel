@@ -2,31 +2,16 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() });
 const port = 3000;
-const fs = require('fs');
-const pg = require('pg');
+
+const db = require('./db/db')
+const storage = require('./storage/storage')
+const multer = require('multer');
+const upload = multer({ storage });
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(cors())
 app.use(express.json())
-
-const db = new pg.Client ({
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-    ssl: {
-        rejectUnauthorized: true,
-        ca: fs.readFileSync("./ca.pem").toString(),
-  },
-});
-
-db.connect().catch(err => {
-  console.error('DB connection error:', err);
-});
 
 app.get('/api/rooms', async (req, res) => {
     try {
@@ -57,7 +42,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
 
     const extras = JSON.parse(req.body.extras);
 
-    const image = req.file.originalname;
+    let image = req.file.path.split('/').slice(-1);
 
     const slug = name.toLowerCase().replaceAll(" ", "-");
 
@@ -129,7 +114,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 
     let extras = JSON.parse(req.body.extras);
     
-    let image = req.file ? req.file.originalname : null;
+    let image = req.file ? req.file.path.split('/').slice(-1) : null;
 
     let slug = name.toLowerCase().replaceAll(" ", "-");
 
