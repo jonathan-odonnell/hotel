@@ -35,7 +35,7 @@ export default function Services () {
             <div className="services-center">
                 {services.map((item, index) => {
                     return <article key={index} className="service">
-                        <span>{item.icon}</span>
+                        <span aria-label={item.name}>{item.icon}</span>
                         <h6>{item.title}</h6>
                         <p>{item.info}</p>
                     </article>

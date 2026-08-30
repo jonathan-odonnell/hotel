@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { FaPlus, FaPenSquare, FaTrash } from "react-icons/fa"
+import { FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../context";
@@ -74,11 +74,6 @@ export default function SingleRoom () {
             <p>{error}</p>
             </div>}
           <div>
-            <Link to={`/rooms/add`}>
-              <span aria-label="add room">
-                <FaPlus/>
-              </span>
-            </Link>
             <Link to={`/rooms/${slug}/update`}>
               <span aria-label={`edit ${name} room`}>
                 <FaPenSquare/>
