@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 
 
-function App() {
+export default function App() {
   return (
     <>
       <Navbar />
@@ -24,5 +24,3 @@ function App() {
     </>
   );
 }
-
-export default App;

@@ -7,7 +7,7 @@ import RoomForm from "../components/RoomForm";
 import RoomFormError from "../components/RoomFormError";
 
 
-const UpdateRoom = () => {
+export default function UpdateRoom () {
   const { getRoom, error } = React.useContext(RoomContext);
   const { slug } = useParams();
   const room = getRoom(slug);
@@ -39,7 +39,5 @@ const UpdateRoom = () => {
       {error && <RoomFormError error={error}/>}
       <RoomForm room={room} />
     </>
-  )
+  );
 };
-
-export default UpdateRoom;

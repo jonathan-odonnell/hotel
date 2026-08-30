@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { FaAlignRight } from "react-icons/fa";
 import logo from "/images/logo.svg";
 
-const Navbar = () => {
+export default function Navbar () {
   const [isOpen, setIsOpen] = useState(false)
   const handleToggle = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    setIsOpen(!this.state.isOpen);
   };
   return (
     <nav className="navbar">
@@ -37,5 +37,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar

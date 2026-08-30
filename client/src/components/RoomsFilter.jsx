@@ -8,7 +8,7 @@ const getUnique = (items, value) => {
   });
 };
 
-const RoomsFilter = ({ rooms }) => {
+export default function RoomsFilter ({ rooms }) {
   // context hooks
   const context = useContext(RoomContext);
   const {
@@ -165,5 +165,3 @@ const RoomsFilter = ({ rooms }) => {
     </section>
   );
 };
-
-export default RoomsFilter;

@@ -5,7 +5,7 @@ import RoomFormError from "./RoomFormError";
 import axios from "axios";
 
 
-const RoomForm = ({ room }) => {
+export default function RoomForm ({ room }) {
     const navigate = useNavigate();
     const { addRoom, updateRoom, error, updateError } = React.useContext(RoomContext);
     // room
@@ -249,7 +249,5 @@ const RoomForm = ({ room }) => {
                 </button>
             </div>
         </form>
-    )
+    );
 };
-
-export default RoomForm;

@@ -6,7 +6,7 @@ import Banner from "../components/Banner";
 import RoomForm from "../components/RoomForm";
 import RoomFormError from "../components/RoomFormError";
 
-const AddRoom = () => {
+export default function AddRoom () {
   const { error } = React.useContext(RoomContext);
   return (
     <>
@@ -20,7 +20,5 @@ const AddRoom = () => {
       {error && <RoomFormError error={error}/>}
       <RoomForm />
     </>
-    )
+    );
 };
-
-export default AddRoom;

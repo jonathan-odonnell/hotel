@@ -1,5 +1,5 @@
 import loadingGif from "/images/gif/loading-arrow.gif";
-const Loading = () => {
+export default function Loading () {
   return (
     <div className="loading">
       <h4>rooms data loading....</h4>
@@ -7,5 +7,3 @@ const Loading = () => {
     </div>
   );
 };
-
-export default Loading;

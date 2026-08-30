@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import Room from "./Room";
 import Title from "./Title";
 
-const FeaturedRooms = () => {
+export default function FeaturedRooms () {
     let { loading, featuredRooms:rooms } = React.useContext(RoomContext);
     rooms = rooms.map(room => {
         return <Room key={room.id} room={room}/>
@@ -16,7 +16,5 @@ const FeaturedRooms = () => {
                 {loading?<Loading />:rooms}
             </div>
         </section>
-    )
-}
-
-export default FeaturedRooms
+    );
+};

@@ -1,11 +1,11 @@
 import React from "react";
-import { withRoomConsumer } from "../context";
+import { RoomContext } from "../context";
 import Loading from "./Loading";
 import RoomsFilter from "./RoomsFilter";
 import RoomsList from "./RoomsList";
 
-function RoomContainer({ context }) {
-  const { loading, sortedRooms, rooms } = context;
+export default function RoomContainer () {
+  const { loading, sortedRooms, rooms } = React.useContext(RoomContext);
   if (loading) {
     return <Loading />;
   }
@@ -15,6 +15,4 @@ function RoomContainer({ context }) {
       <RoomsList rooms={sortedRooms} />
     </>
   );
-}
-
-export default withRoomConsumer(RoomContainer);
+};

@@ -112,5 +112,6 @@ export default function SingleRoom () {
           ))}
         </ul>
       </section>
-    </>)
-  }
+    </>
+    );
+  };
