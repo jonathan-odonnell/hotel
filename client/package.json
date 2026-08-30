@@ -6,7 +6,7 @@
   "author": "",
   "type": "commonjs",
   "main": "vite.config.js",
-   "scripts": {
+  "scripts": {
     "start": "vite",
     "build": "vite build",
     "lint": "oxlint",

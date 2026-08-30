@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../context";
-import defaultImg from "/images/defaultBcg.jpeg" 
 
 export default function SingleRoom () {
   const { getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
@@ -35,9 +34,13 @@ export default function SingleRoom () {
       images
   } = room;
 
-  const mainImg = `/images/${room.images[0]}` || defaultImg
+  const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+
+  const defaultImg = "defaultBcg_l0nmsz.jpg"
+
+  const mainImg = `${baseUrl + room.images[0]}` || `${baseUrl + defaultImg}`
   
-  const gallery = images.slice(1).map(img => `/images/${img}`) || defaultImg 
+  const gallery = images.slice(1).map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
  
   const handleDelete = async () => {
     try {
