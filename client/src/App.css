@@ -15,7 +15,7 @@
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
   --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 }
-/* globals */
+/* Globals */
 body {
   padding-top: 66px;
   color: var(--mainBlack);
@@ -58,17 +58,14 @@ textarea {
   padding: 0.2rem;
   border: 1.5px solid var(--mainBlack);
 }
-
 textarea {
   height: 10rem;
   width: 100%;
 }
-
 input[type="file"]{
   padding: 0.2rem 0;
   border: none;
 }
-
 .btn-primary {
   display: inline-block;
   text-decoration: none;
@@ -102,7 +99,8 @@ input[type="file"]{
   padding: 1rem;
   letter-spacing: var(--mainSpacing);
 }
-/* end of globals */
+/* End of Globals */
+
 /* Navbar */
 .navbar {
   position: fixed;
@@ -147,7 +145,6 @@ input[type="file"]{
 .nav-links a:hover {
   color: var(--primaryColor);
 }
-
 .show-nav {
   height: 100px;
 }
@@ -170,7 +167,8 @@ input[type="file"]{
     padding: 0.5rem 0;
   }
 }
-/* end of navbar */
+/* End of Navbar */
+
 /* Hero */
 .default-hero,
 .rooms-hero,
@@ -190,6 +188,7 @@ input[type="file"]{
   background-image: url('/images/room-11.jpeg');
 }
 /* End of Hero */
+
 /* Banner */
 .banner {
   display: inline-block;
@@ -230,6 +229,7 @@ input[type="file"]{
   }
 }
 /* End of Banner */
+
 /* Title */
 .section-title {
   text-align: center;
@@ -247,9 +247,9 @@ input[type="file"]{
   margin: 0 auto;
   background: var(--primaryColor);
 }
-/* end of Title */
+/* End of Title */
 
-/* services */
+/* Services */
 .services {
   padding: 5rem 0;
 }
@@ -284,15 +284,14 @@ input[type="file"]{
     max-width: 1170px;
   }
 }
-
 @media screen and (min-width: 1200px) {
   .services p {
     width: 100%;
   }
 }
-/*end of services */
-/* featured rooms */
+/* End of Services */
 
+/* Featured Rooms */
 .featured-rooms {
   padding: 5rem 0;
 }
@@ -316,8 +315,9 @@ input[type="file"]{
     max-width: 1170px;
   }
 }
-/* end pf featured rooms */
-/* room */
+/* End of Featured Rooms */
+
+/* Room */
 .room {
   box-shadow: var(--lightShadow);
   transition: var(--mainTransition);
@@ -379,11 +379,48 @@ input[type="file"]{
   font-weight: 700;
   letter-spacing: var(--mainSpacing);
 }
-/* end of room  */
-/* single room*/
+/* End of Room  */
 
+/* Single Room */
 .single-room {
-  padding: 5rem 0 0 0;
+  padding-top: 5rem;
+  width: 80vw;
+  margin: 0 auto;
+}
+.single-room-btns {
+  padding-top: 5rem;
+}
+.single-room-btns a,
+.single-room-btns button {
+  background-color: transparent;
+  color: var(--mainBlack);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border: none
+}
+.single-room-btns a:hover,
+.single-room-btns button:hover {
+  background-color: transparent;
+  color: var(--primaryColor);
+}
+.single-room-btns p {
+  padding-bottom: 1rem;
+}
+@media screen and (min-width: 576px) {
+  .single-room-btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .space-between {
+    justify-content: space-between;
+  }
+  .single-room-btns p {
+    padding-bottom: 0;
+  }
+}
+.single-room-btns a {
+  margin-right: 2rem;
+  color: var(--mainBlack);
 }
 .single-room-images {
   width: 80vw;
@@ -398,7 +435,6 @@ input[type="file"]{
   display: block;
 }
 .single-room-info {
-  width: 80vw;
   display: grid;
   grid-template-columns: 1fr;
   margin: 2rem auto;
@@ -419,7 +455,6 @@ input[type="file"]{
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
-
 .info h6 {
   font-weight: 300;
 }
@@ -454,8 +489,9 @@ input[type="file"]{
     padding-left: 3rem;
   }
 }
-/* end of single room*/
-/* roomlist */
+/* End of Single Room */
+
+/* Roomlist */
 .roomslist {
   padding-bottom: 5rem;
 }
@@ -467,7 +503,6 @@ input[type="file"]{
   grid-row-gap: 2rem;
   grid-column-gap: 30px;
 }
-
 @media screen and (min-width: 776px) {
   .roomslist-center {
     width: 90vw;
@@ -479,8 +514,9 @@ input[type="file"]{
     max-width: 1170px;
   }
 }
-/* end of roomlist */
-/*  rooms fitler*/
+/* End of roomlist */
+
+/*  Rooms Fitler */
 .filter-container {
   padding: 5rem 0;
 }
@@ -520,7 +556,6 @@ input[type="file"]{
   font-size: 0.8rem;
   margin-left: 0.5rem;
 }
-
 .filter-form select {
   text-transform: capitalize;
 }
@@ -535,27 +570,24 @@ input[type="file"]{
     max-width: 1170px;
   }
 }
-/* end of rooms fitler*/
-/* room form */
+/* End of Rooms Fitler */
+
+/* Room Form */
 .room-form {
   padding: 5rem 0;
   width: 80vw;
   margin: 0 auto;
 }
-
 .room-form .form-group {
   padding: 1rem 0;
 }
-
 .room-form .single-extra label {
   display: inline-block;
   margin-right: 0.8rem;
 }
-
 .room-form .btn-primary {
   padding: 0.6rem 1.2rem;
 }
-
 @media screen and (min-width: 776px) {
   .room-form {
     width: 90vw;
@@ -570,4 +602,4 @@ input[type="file"]{
 .btn-center {
   text-align: center;
 }
-/* end of room form */
+/* End of Room Form */

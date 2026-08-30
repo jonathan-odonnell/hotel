@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../context";
@@ -67,6 +68,23 @@ export default function SingleRoom () {
           {gallery.map((src, index) => (
             <img key={index} src={src} alt={name} />
           ))}
+        </div>
+        <div className={error ? "single-room-btns error" : "single-room-btns"}>
+          {error && <div>
+            <p>{error}</p>
+            </div>}
+          <div>
+            <Link to={`/rooms/${slug}/update`}>
+              <span>
+                <FaPenSquare/>
+              </span>
+            </Link>
+            <button onClick={handleDelete}>
+            <span>
+              <FaTrash />
+            </span> 
+            </button>
+          </div>
         </div>
         <div className="single-room-info">
           <article className="desc">
