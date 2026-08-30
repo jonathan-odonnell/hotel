@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import defaultImg from "/images/room-1.jpeg";
 
 export default function Room({ room }) {
     const { name, slug, images, price } = room;
-    const image = `/images/${room.images[0]}` || defaultImg
+
+    const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+
+    const image = `${baseUrl + images[0]}` || `${baseUrl + "defaultBcg_l0nmsz.jpg"}`
+
     return (
       <article className="room">
         <div className="img-container">
