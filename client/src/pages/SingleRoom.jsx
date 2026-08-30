@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { FaPenSquare, FaTrash } from "react-icons/fa"
+import { FaPlus, FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
 import { RoomContext } from "../context";
@@ -37,7 +37,7 @@ export default function SingleRoom () {
 
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
 
-  const defaultImg = "defaultBcg_l0nmsz.jpg"
+  const defaultImg = "room-1_knlk7b.jpg"
 
   const mainImg = `${baseUrl + images[0]}` || `${baseUrl + defaultImg}`
   
@@ -74,12 +74,17 @@ export default function SingleRoom () {
             <p>{error}</p>
             </div>}
           <div>
+            <Link to={`/rooms/add`}>
+              <span aria-label="add room">
+                <FaPlus/>
+              </span>
+            </Link>
             <Link to={`/rooms/${slug}/update`}>
-              <span>
+              <span aria-label={`edit ${name} room`}>
                 <FaPenSquare/>
               </span>
             </Link>
-            <button onClick={handleDelete}>
+            <button onClick={handleDelete} aria-label={`delete ${name} room`}>
             <span>
               <FaTrash />
             </span> 
