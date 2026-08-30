@@ -21,7 +21,7 @@ app.get('/api/rooms', async (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            error: "Failed to get rooms"
+            error: 'Failed to get rooms'
         });
     }
 })
@@ -42,23 +42,28 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
 
     const extras = JSON.parse(req.body.extras);
 
-    let image = req.file.path.split('/').slice(-1);
+    let images = [
+        req.file.path.split('/').slice(-1),
+        'details-3_yyg4ej.jpg',
+        'details-2_ng4sui.jpg',
+        'details-4_xjpsvw.jpg'
+    ];
 
-    const slug = name.toLowerCase().replaceAll(" ", "-");
+    const slug = name.toLowerCase().replaceAll(' ', '-');
 
     let fields = [
-        "name",
-        "slug",
-        "type",
-        "price",
-        "size",
-        "capacity",
-        "pets",
-        "breakfast",
-        "featured",
-        "description",
-        "extras",
-        "image"
+        'name',
+        'slug',
+        'type',
+        'price',
+        'size',
+        'capacity',
+        'pets',
+        'breakfast',
+        'featured',
+        'description',
+        'extras',
+        'images'
     ]
 
     let placeholders = fields.map((value, index) => `$${index + 1}`);
@@ -75,12 +80,12 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
         featured,
         description,
         extras,
-        image
+        images
     ];
 
     let sql = `
-        insert into hotels (${fields.join(", ")}) 
-        values(${placeholders.join(", ")}) 
+        insert into hotels (${fields.join(', ')}) 
+        values(${placeholders.join(', ')}) 
         returning *
     `;
 
@@ -91,7 +96,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            error: "Failed to add room"
+            error: 'Failed to add room'
         });
     }
 })
@@ -114,22 +119,22 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 
     let extras = JSON.parse(req.body.extras);
     
-    let image = req.file ? req.file.path.split('/').slice(-1) : null;
+    let images = req.file ? req.file.path.split('/').slice(-1) : null;
 
-    let slug = name.toLowerCase().replaceAll(" ", "-");
+    let slug = name.toLowerCase().replaceAll(' ', '-');
 
     let fields = [
-        "name = $1",
-        "slug = $2",
-        "type = $3",
-        "price = $4",
-        "size = $5",
-        "capacity = $6",
-        "pets = $7",
-        "breakfast = $8",
-        "featured = $9",
-        "description = $10",
-        "extras = $11"
+        'name = $1',
+        'slug = $2',
+        'type = $3',
+        'price = $4',
+        'size = $5',
+        'capacity = $6',
+        'pets = $7',
+        'breakfast = $8',
+        'featured = $9',
+        'description = $10',
+        'extras = $11'
     ];
 
     let values = [
@@ -146,7 +151,12 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         extras
     ];
 
-    if (image) {
+    if (images) {
+        images.push(
+            'details-3_yyg4ej.jpg',
+            'details-2_ng4sui.jpg',
+            'details-4_xjpsvw.jpg'
+        )
         fields.push(`image = $${fields.length + 1}`);
         values.push(req.file.originalname);
     }
@@ -155,7 +165,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 
     let sql = `
         update hotels
-        set ${fields.join(", ")}
+        set ${fields.join(', ')}
         where id = $${values.length}
         returning *
     `;
@@ -167,7 +177,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         })
     } catch (err) {
         res.status(500).json({
-            error: "Failed to update room"
+            error: 'Failed to update room'
         });
     }
 })
@@ -178,7 +188,7 @@ app.delete('/api/rooms/:id', async (req, res) => {
         res.status(204);
     } catch (err) {
         res.status(500).json({
-            error: "Failed to delete room"
+            error: 'Failed to delete room'
         });
     }
 });
