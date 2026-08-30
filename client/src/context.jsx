@@ -10,7 +10,7 @@ class RoomProvider extends Component{
     sortedRooms: [],
     featuredRooms: [],
     loading: true,
-    sort: "none",
+    sort: "all",
     type: "all",
     capacity: 1,
     price: 0,
@@ -53,11 +53,8 @@ class RoomProvider extends Component{
     };
   
     // get room
-    getRoom = slug => {
-        let tempRooms = [...this.state.rooms];
-        const room = tempRooms.find(room => room.slug === slug);
-        return room;
-    };
+    getRoom = slug => this.state.rooms.find(
+      r => r.slug === slug);
   
     // add room
     addRoom = room => {
@@ -94,16 +91,11 @@ class RoomProvider extends Component{
     };
 
     handleChange = event => {
-        // set states and declare variables 
-        const target = event.target;
-
-        const value =  target.type === "checkbox" ? target.checked : target.value;
-        
-        const name = target.name;
-    
+      // handles change of filter inputs
+        const { name, type, checked, value } = event.target;
         this.setState(
-          {
-            [name]: value
+          { 
+            [name]: type === "checkbox" ? checked : value 
           },
           this.filterRooms
         );
@@ -156,40 +148,17 @@ class RoomProvider extends Component{
           tempRooms = tempRooms.filter(room => room.pets === true);
         }
 
-        // sort by default
-        if (sort === "all") {
-          tempRooms = tempRooms.sort((a, b) => 
-            a.id - b.id
-          )
-        }
+        // sort
 
-        // sort by name asc
-        if (sort === "name_asc") {
-          tempRooms = tempRooms.sort((a, b) =>
-            a.name.localeCompare(b.name)
-          )
-        }
+        const sorters = {
+          all: (a, b) => a.id - b.id,
+          name_asc: (a, b) => a.name.localeCompare(b.name),
+          name_desc: (a, b) => b.name.localeCompare(a.name),
+          price_asc: (a, b) => a.price - b.price,
+          price_desc: (a, b) => b.price - a.price
+        };
 
-        // sort by name desc
-        if (sort === "name_desc") {
-          tempRooms = tempRooms.sort((a, b) =>
-            b.name.localeCompare(a.name)
-          )
-        }
-
-        // sort by price asc
-        if (sort === "price_asc") {
-          tempRooms = tempRooms.sort((a, b) =>
-            a.price - b.price
-          )
-        }
-
-        // sort by price desc
-        if (sort === "price_desc") {
-          tempRooms = tempRooms.sort((a, b) =>
-            b.price - a.price
-          )
-        }
+        tempRooms.sort(sorters[sort]);
 
         // set sorted rooms 
         this.setState({
