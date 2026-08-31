@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
 const port = 3000;
-
 const db = require('./db/db')
 const storage = require('./storage/storage')
 const multer = require('multer');
@@ -28,7 +28,6 @@ app.get('/api/rooms', async (req, res) => {
 })
 
 app.post('/api/rooms', upload.single('image'), async (req, res) => {
-
     const {
         name,
         type,
@@ -44,7 +43,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
     const extras = JSON.parse(req.body.extras);
 
     let images = [
-        req.file ? req.file.path.split('/').slice(-1): null,
+        req.file ? req.file.path.split('/').pop(): null,
         'details-3_yyg4ej.jpg',
         'details-2_ng4sui.jpg',
         'details-4_xjpsvw.jpg'
@@ -103,8 +102,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
     }
 })
 
-app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
-    
+app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {    
     let id = req.params.id
 
     let {
@@ -122,7 +120,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
     let extras = JSON.parse(req.body.extras);
     
     let images = [
-        req.file ? req.file.path.split('/').slice(-1) : null,
+        req.file ? req.file.path.split('/').pop() : null,
         'details-3_yyg4ej.jpg',
         'details-2_ng4sui.jpg',
         'details-4_xjpsvw.jpg'
@@ -159,8 +157,8 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
     ];
 
     if (images[0]) {
-        fields.push(`image = $${fields.length + 1}`);
-        values.push(req.file.originalname);
+        fields.push(`images = $${fields.length + 1}`);
+        values.push(images);
     }
 
     values.push(id);
