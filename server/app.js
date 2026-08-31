@@ -44,9 +44,9 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
 
     let images = [
         req.file ? req.file.path.split('/').pop(): null,
-        'details-3_yyg4ej.jpg',
-        'details-2_ng4sui.jpg',
-        'details-4_xjpsvw.jpg'
+        'details-3.jpg',
+        'details-2.jpg',
+        'details-4.jpg'
     ];
 
     const slug = name.toLowerCase().replaceAll(' ', '-');
@@ -121,9 +121,9 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
     
     let images = [
         req.file ? req.file.path.split('/').pop() : null,
-        'details-3_yyg4ej.jpg',
-        'details-2_ng4sui.jpg',
-        'details-4_xjpsvw.jpg'
+        'details-3.jpg',
+        'details-2.jpg',
+        'details-4.jpg'
     ]
 
     let slug = name.toLowerCase().replaceAll(' ', '-');

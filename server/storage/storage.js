@@ -11,7 +11,9 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        public_id: path.parse(req.file.originalname).name,
+        public_id: (req, file) => {
+            return path.parse(file.originalname).name;
+        },
         folder: 'beach-resort',
         allowedFormats: ['jpeg', 'png', 'jpg'],
         use_filename: true,

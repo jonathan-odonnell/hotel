@@ -38,7 +38,7 @@ export default function SingleRoom () {
 
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
 
-  const defaultImg = "room-1_knlk7b.jpg"
+  const defaultImg = "room-1.jpg"
 
   const mainImg = `${baseUrl + images[0]}` || `${baseUrl + defaultImg}`
   
