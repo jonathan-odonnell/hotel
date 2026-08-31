@@ -12,6 +12,8 @@ const storage = new CloudinaryStorage({
     params: {
         folder: 'beach-resort',
         allowedFormats: ['jpeg', 'png', 'jpg'],
+        use_filename: true,
+        unique_filename: false,
     }                                                              
 }); 
 
