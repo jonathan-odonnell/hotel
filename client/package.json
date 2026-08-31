@@ -11,5 +11,8 @@
     "build": "vite build",
     "lint": "oxlint",
     "serve": "vite serve"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }
