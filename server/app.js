@@ -17,6 +17,7 @@ app.get('/api/rooms', async (req, res) => {
     try {
         const results = await db.query('select * from hotels order by id')
         res.status(200).json({
+            status: 'success',
             rooms: results.rows
         })
     } catch (err) {
@@ -43,7 +44,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
     const extras = JSON.parse(req.body.extras);
 
     let images = [
-        req.file.path.split('/').slice(-1),
+        req.file ? req.file.path.split('/').slice(-1): null,
         'details-3_yyg4ej.jpg',
         'details-2_ng4sui.jpg',
         'details-4_xjpsvw.jpg'
@@ -92,6 +93,7 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
      try {
         let results = await db.query(sql, values)
         res.status(201).json({
+            status: 'success',
             room: results.rows[0]
         })
     } catch (err) {
@@ -119,7 +121,12 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 
     let extras = JSON.parse(req.body.extras);
     
-    let images = req.file ? req.file.path.split('/').slice(-1) : null;
+    let images = [
+        req.file ? req.file.path.split('/').slice(-1) : null,
+        'details-3_yyg4ej.jpg',
+        'details-2_ng4sui.jpg',
+        'details-4_xjpsvw.jpg'
+    ]
 
     let slug = name.toLowerCase().replaceAll(' ', '-');
 
@@ -151,12 +158,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         extras
     ];
 
-    if (images) {
-        images.push(
-            'details-3_yyg4ej.jpg',
-            'details-2_ng4sui.jpg',
-            'details-4_xjpsvw.jpg'
-        )
+    if (images[0]) {
         fields.push(`image = $${fields.length + 1}`);
         values.push(req.file.originalname);
     }
@@ -173,6 +175,7 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
      try {
         const results = await db.query(sql, values)
         res.status(200).json({
+            status: 'success',
             room: results.rows[0]
         })
     } catch (err) {
@@ -185,7 +188,9 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 app.delete('/api/rooms/:id', async (req, res) => {
     try {
         await db.query('delete from hotels where id = $1', [req.params.id])
-        res.status(204);
+        res.status(204).json({
+            status: 'success'
+        });
     } catch (err) {
         res.status(500).json({
             error: 'Failed to delete room'
@@ -198,6 +203,8 @@ app.get('/\{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+module.exports = server
