@@ -107,7 +107,7 @@ export default function RoomForm ({ room }) {
                 navigate('/rooms');
             }
         } catch (err) {
-            updateError(err.message);
+            updateError(err.response?.data?.error || err.message);
         }
     }
     return (

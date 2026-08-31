@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
@@ -50,7 +51,7 @@ export default function SingleRoom () {
       updateError(null)
       navigate('/rooms')
     } catch (err) {
-      updateError(err)
+      updateError(err.response?.data?.error || err.message);
     }
   }
 

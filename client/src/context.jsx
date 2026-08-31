@@ -59,28 +59,33 @@ class RoomProvider extends Component{
     // add room
     addRoom = room => {
       this.setState(prev => ({
-        rooms: [...prev.rooms, room]
+        rooms: [...prev.rooms, room],
+        sortedRooms: [...prev.sortedRooms, room]
       }));
     };
   
     // update room
     updateRoom = updatedRoom => {
-      this.setState(prev => ({
-        rooms: prev.rooms.map(room =>
+      this.setState(prev => {
+        const updatedRooms = prev.rooms.map(room =>
           room.id === updatedRoom.id ? updatedRoom : room
-        )
-      }));
+        );
+        return {
+          rooms: updatedRooms,
+          sortedRooms: updatedRooms
+        };
+      });
     };
   
     // delete room
     deleteRoom = id => {
-      this.setState(
-        prev => ({
-          rooms: prev.rooms.filter(room => {
-            return room.id !== id 
-          })
-        })
-      );
+      this.setState(prev => {
+        const updatedRooms = prev.rooms.filter(room => room.id !== id);
+        return {
+          rooms: updatedRooms,
+          sortedRooms: updatedRooms
+        };
+      });
     };
 
     // update error state
@@ -186,6 +191,7 @@ class RoomProvider extends Component{
               getRoom: this.getRoom,
               addRoom: this.addRoom,
               updateRoom: this.updateRoom,
+              deleteRoom: this.deleteRoom,
               updateError: this.updateError,
               handleChange: this.handleChange
               } }>
