@@ -1,5 +1,6 @@
+const fs = require('fs');
+const path = require ('path');
 const pg = require('pg');
-const fs = require('fs')
 
 const db = new pg.Client ({
     user: process.env.DB_USER,
@@ -9,7 +10,7 @@ const db = new pg.Client ({
     database: process.env.DB_NAME,
     ssl: {
         rejectUnauthorized: true,
-        ca: fs.readFileSync("./ca.pem").toString(),
+        ca: fs.readFileSync(path.join(__dirname, 'ca.pem')).toString(),
   },
 });
 
