@@ -297,46 +297,6 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
 ## Deployment
 
-### Deploying to Render
-
-The application is deployed on Render using the following steps:
-
-1. Log in to your Render account and navigate to the Dashboard.
-2. Click the **New +** button and select **Web Service**.
-3. Connect your GitHub account and select the repository for this project.
-4. Enter a unique name for your application service.
-5. Set the runtime environment to **Node**.
-6. Specify the build command:
-   ```bash
-   npm install && npm run build
-    ```
-7. Specify the start command:
-    ```bash
-    node server/app.js
-    ```
-8. Scroll down to the Environment Variables section and add the required configuration keys (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, CLOUD_NAME, CLOUDINARY_KEY, CLOUDINARY_SECRET).
-9. Click Create Web Service to start the build and deployment process.
-
-More information about deploying web applications to Render is available [here](https://render.com/docs/deploy-node-express-app).
-
-### Running Locally
-
-To run the application on your local machine, follow these steps:
-
-1. Ensure Node.js and npm are installed on your machine.
-2. Open your terminal and navigate to the project root directory.
-3. Install all project dependencies by running:
-    ```bash
-    npm install
-    ```
-4. Create a .env file in the root directory and configure your local environment variables (PostgreSQL connection parameters and Cloudinary API credentials).
-5. Replace the ca.pem file with your database security certificate in ```server/db```
-6. Start the server by running:
-    ```bash
-    node server/app.js
-    ```
-7. Open your web browser and navigate to http://localhost:3000 (or your configured PORT) to view the application.
-
 ### Forking the GitHub Repository
 
 The GitHub repository can be forked to make a copy without affecting the original project:
@@ -364,6 +324,46 @@ A local clone of the project repository can be created using the following steps
 7. Press Enter to create your local clone.
 
 More information about cloning a repository is available [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+
+### Running Locally
+
+To run the application on your local machine, follow these steps:
+
+1. Ensure Node.js and npm are installed on your machine.
+2. Open your terminal and navigate to the project root directory.
+3. Install all project dependencies by running:
+    ```bash
+    npm install
+    ```
+4. Create a .env file in the root directory and configure your local environment variables (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, CLOUD_NAME, CLOUDINARY_KEY, CLOUDINARY_SECRET).
+5. Replace the ca.pem file with your database security certificate in ```server/db```
+6. Start the server by running:
+    ```bash
+    node server/app.js
+    ```
+7. Open your web browser and navigate to http://localhost:3000 (or your configured PORT) to view the application.
+
+### Deploying to Render
+
+The application is deployed on Render using the following steps:
+
+1. Log in to your Render account and navigate to the Dashboard.
+2. Click the **New +** button and select **Web Service**.
+3. Connect your GitHub account and select the repository for this project.
+4. Enter a unique name for your application service.
+5. Set the runtime environment to **Node**.
+6. Specify the build command:
+   ```bash
+   npm install && npm run build
+    ```
+7. Specify the start command:
+    ```bash
+    node server/app.js
+    ```
+8. Scroll down to the Environment Variables section and add the required configuration keys (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, CLOUD_NAME, CLOUDINARY_KEY, CLOUDINARY_SECRET).
+9. Click Create Web Service to start the build and deployment process.
+
+More information about deploying web applications to Render is available [here](https://render.com/docs/deploy-node-express-app).
 
 ## Credits and Acknowledgements
 
