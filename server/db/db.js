@@ -3,6 +3,7 @@ const path = require ('path');
 const { Pool } = require('pg');
 const roomsData = require('../data.json');
 
+// Create new database connection pool
 const pool = new Pool ({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -15,6 +16,7 @@ const pool = new Pool ({
   },
 });
 
+// Check database connection
 pool.connect().catch(err => {
   console.error('DB connection error:', err);
 });
@@ -86,9 +88,9 @@ const initDb = async () => {
       `);
       console.log('Initial seed data loaded successfully.');
     }
-
+  // Catch any errors during database initialization
   } catch (err) {
-    console.error('Error creating database tables:', err);
+    console.error('Error initialising database:', err);
   }
 };
 
