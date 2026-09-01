@@ -9,8 +9,8 @@ import RoomFormError from "../components/RoomFormError";
 
 
 export default function UpdateRoom () {
-  // Gets loading and error data and getRoom function from context
-  const { getRoom, loading, error } = React.useContext(RoomContext);
+  // Gets loading, cloud name and error data and getRoom function from context
+  const { getRoom, loading, cloudName, error } = React.useContext(RoomContext);
   // Gets slug from parameters
   const { slug } = useParams();
   const room = getRoom(slug);
@@ -28,7 +28,7 @@ export default function UpdateRoom () {
   }
 
   // Handles images
-  const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+  const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1788092352/beach-resort/`
   
   const mainImg = `${baseUrl + room.main_image}` || `${baseUrl + "defaultBcg.jpg"}`
 

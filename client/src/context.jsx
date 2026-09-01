@@ -23,17 +23,22 @@ class RoomProvider extends Component{
     error: null
   };
   async componentDidMount() {
-    // Get rooms from API and set states
+    // Get rooms and cloud name from API and set states
       try {
-        let response = await axios.get('/api/rooms')
-    
-        let rooms = response.data.rooms;
+        const [roomsResponse, configResponse] = await Promise.all([
+          axios.get('/api/rooms'),
+          axios.get('/api/config/cloudinary')
+        ]);
 
-        let featuredRooms = rooms.filter(room => room.featured === true);
+        const rooms = roomsResponse.data.rooms;
+        
+        const cloudName = configResponse.data.cloudName;
 
-        let maxPrice = Math.max(...rooms.map(item => item.price));
+        const featuredRooms = rooms.filter(room => room.featured === true);
 
-        let maxSize = Math.max(...rooms.map(item => item.size));
+        const maxPrice = Math.max(...rooms.map(item => item.price));
+
+        const maxSize = Math.max(...rooms.map(item => item.size));
         
         this.setState({
           rooms,
@@ -43,6 +48,7 @@ class RoomProvider extends Component{
           price: maxPrice,
           maxPrice,
           maxSize,
+          cloudName,
           error: null,
         });
         // Catch errors
@@ -194,6 +200,7 @@ class RoomProvider extends Component{
               pets: this.state.pets,
               sort: this.state.sort,
               error: this.state.error,
+              cloudName: this.state.cloudName,
               getRoom: this.getRoom,
               addRoom: this.addRoom,
               updateRoom: this.updateRoom,

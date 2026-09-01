@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-export default function Room ({ room }) {
-  // Gets rooms and handles images
+export default function Room ({ room, cloudName }) {
+  // Handles room, cloud name and images
   const { name, slug, main_image, price } = room;
 
-  const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+  const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1788092352/beach-resort/`
 
   const image = `${baseUrl + main_image}` || `${baseUrl + "defaultBcg_l0nmsz.jpg"}`
 

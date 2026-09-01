@@ -1,6 +1,6 @@
 import Room from "./Room";
 
-export default function RoomsList ({ rooms }) {
+export default function RoomsList ({ rooms, cloudName }) {
   // Renders error message if no rooms
   if (rooms.length === 0) {
     return (
@@ -14,7 +14,7 @@ export default function RoomsList ({ rooms }) {
     <section className="roomslist">
       <div className="roomslist-center">
         {rooms.map(item => {
-          return <Room key={item.id} room={item} />;
+          return <Room key={item.id} room={item} cloudName={cloudName} />;
         })}
       </div>
     </section>

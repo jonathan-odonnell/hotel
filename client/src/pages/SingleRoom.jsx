@@ -8,8 +8,8 @@ import Loading from "../components/Loading";
 import { RoomContext } from "../context";
 
 export default function SingleRoom () {
-  // Gets loading, room and error data and functions from context
-  const { loading, getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
+  // Gets loading, cloud name, room and error data and functions from context
+  const { loading, cloudName, getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
   const { slug } = useParams();
   const room = getRoom(slug);
 
@@ -46,7 +46,7 @@ export default function SingleRoom () {
 
   const detailsImages = [details_image_1, details_image_2, details_image_3];
 
-  const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
+  const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1788092352/beach-resort/`
 
   const defaultImg = "room-1.jpg"
 

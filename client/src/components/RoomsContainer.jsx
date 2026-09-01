@@ -7,8 +7,8 @@ import RoomsFilter from "./RoomsFilter";
 import RoomsList from "./RoomsList";
 
 export default function RoomContainer () {
-  // Gets loading status and rooms data from context
-  const { loading, sortedRooms, rooms } = React.useContext(RoomContext);
+  // Gets loading cloud name and rooms data from context
+  const { loading, cloudName, sortedRooms, rooms } = React.useContext(RoomContext);
   // Renders loading component
   if (loading) {
     return <Loading />;
@@ -24,7 +24,7 @@ export default function RoomContainer () {
           </span>
         </Link>
       </div>
-      <RoomsList rooms={sortedRooms} />
+      <RoomsList rooms={sortedRooms} cloudName={cloudName} />
     </>
   );
 };
