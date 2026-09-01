@@ -9,7 +9,7 @@ import RoomFormError from "../components/RoomFormError";
 export default function AddRoom () {
   // Gets any errors from context
   const { error } = React.useContext(RoomContext);
-  // Renders AddRoom page components
+  // Renders AddRoom components
   return (
     <>
       <Hero hero="add-room-hero">

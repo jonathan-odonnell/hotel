@@ -34,7 +34,7 @@ export default function UpdateRoom () {
 
   // Renders updateRoom page components
   return (
-    <>
+    <main>
       <StyledHero img={mainImg}>
         <Banner title="update room">
           <Link to={`/rooms/${slug}`} className="btn-primary">
@@ -45,6 +45,6 @@ export default function UpdateRoom () {
       {/* Renders errors if any */}
       {error && <RoomFormError error={error}/>}
       <RoomForm room={room} />
-    </>
+    </main>
   );
 };

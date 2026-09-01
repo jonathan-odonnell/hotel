@@ -6,7 +6,7 @@ import RoomsContainer from "../components/RoomsContainer";
 export default function Rooms () {
   // Renders Rooms page components
   return (
-    <>
+    <main>
       <Hero hero="rooms-hero">
         <Banner title="our rooms">
           <Link to="/" className="btn-primary">
@@ -15,6 +15,6 @@ export default function Rooms () {
         </Banner>
       </Hero>
       <RoomsContainer />
-    </>
+    </main>
   );
 };

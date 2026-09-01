@@ -68,7 +68,7 @@ export default function SingleRoom () {
   }
   // Renders SingleRoom page components and HTML
   return(
-      <>
+    <main>
       <StyledHero img={mainImg}>
         <Banner title={`${name} room`}>
           <Link to="/rooms" className="btn-primary">
@@ -125,6 +125,6 @@ export default function SingleRoom () {
           ))}
         </ul>
       </section>
-    </>
+    </main>
     );
   };

@@ -8,7 +8,7 @@ import FeaturedRooms from "../components/FeaturedRooms";
 export default function Home () {
   // Renders Home page components
   return (
-    <>
+    <main>
       <Hero>
         <Banner
           title="luxurious rooms"
@@ -21,6 +21,6 @@ export default function Home () {
       </Hero>
       <Services />
       <FeaturedRooms />
-    </>
+    </main>
   );
 };
