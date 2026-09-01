@@ -33,16 +33,21 @@ export default function SingleRoom () {
       extras,
       breakfast,
       pets,
-      images
+      main_image,
+      details_image_1,
+      details_image_2,
+      details_image_3,
   } = room;
+
+  const detailsImages = [details_image_1, details_image_2, details_image_3];
 
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
 
   const defaultImg = "room-1.jpg"
 
-  const mainImg = `${baseUrl + images[0]}` || `${baseUrl + defaultImg}`
+  const mainImg = `${baseUrl + main_image}` || `${baseUrl + defaultImg}`
   
-  const gallery = images.slice(1).map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
+  const gallery = detailsImages.map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
  
   const handleDelete = async () => {
     try {

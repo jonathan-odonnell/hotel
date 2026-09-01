@@ -25,7 +25,7 @@ export default function UpdateRoom () {
 
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
 
-  const mainImg = `${baseUrl + room.images[0]}` || `${baseUrl + "defaultBcg.jpg"}`
+  const mainImg = `${baseUrl + room.main_image}` || `${baseUrl + "defaultBcg.jpg"}`
 
   return (
     <>
