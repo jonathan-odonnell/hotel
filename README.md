@@ -53,7 +53,7 @@ The dataset includes the following fields for each room: `id`, `name`, `slug`, `
 
 ### Entity Relationship Diagram
 
-The [Entity Relationship Diagram](client/public/images/ED_Diagram.png) shows further details of each field contained in the hotels table in the database. 
+The [Entity Relationship Diagram](client/public/images/ER_Diagram.png) shows further details of each field contained in the hotels table in the database. 
 
 ## Features
 
