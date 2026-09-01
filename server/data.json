@@ -19,7 +19,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-1.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-1.jpeg", 
+    "details_image_1": "details-2.jpeg", 
+    "details_image_2": "details-3.jpeg", 
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "2",
@@ -42,7 +45,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-2.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-2.jpeg", 
+    "details_image_1": "details-2.jpeg", 
+    "details_image_2": "details-3.jpeg", 
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "3",
@@ -65,7 +71,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-3.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-3.jpeg", 
+    "details_image_1": "details-2.jpeg", 
+    "details_image_2": "details-3.jpeg", 
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "4",
@@ -88,7 +97,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-4.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-4.jpeg", 
+    "details_image_1": "details-2.jpeg", 
+    "details_image_2": "details-3.jpeg", 
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "5",
@@ -111,7 +123,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-5.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-5.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "6",
@@ -134,7 +149,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-6.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-6.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "7",
@@ -157,7 +175,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-7.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-7.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "8",
@@ -180,7 +201,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-8.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-8.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "9",
@@ -203,7 +227,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-9.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-9.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "10",
@@ -226,7 +253,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-10.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-10.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "11",
@@ -249,7 +279,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-11.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-11.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "12",
@@ -272,7 +305,10 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-9.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
+    "main_image": "room-9.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
 },
 {
     "id": "13",
@@ -295,7 +331,8 @@
         "Internet",
         "Comfortable beds"
     ],
-    "images": ["room-12.jpeg", "details-2.jpeg", "details-3.jpeg", "details-4.jpeg"]
-}
-
-]
+    "main_image": "room-12.jpeg",
+    "details_image_1": "details-2.jpeg",
+    "details_image_2": "details-3.jpeg",
+    "details_image_3": "details-4.jpeg"
+}]
