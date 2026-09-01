@@ -9,6 +9,7 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
+    // Set cloudinary image storage parameters
     cloudinary,
     params: {
         public_id: (req, file) => {
