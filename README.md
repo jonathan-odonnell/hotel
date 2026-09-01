@@ -1,8 +1,18 @@
+
 # Beach Resort
 
 Beach Resort is a full-stack hotel rooms platform based in the United Kingdom. This application allows guests to browse and search available rooms, view detailed specifications, and filter options based on their preferences. Additionally, site administrators can manage the resort's inventory with full CRUD (Create, Read, Update, Delete) capabilities to add, edit, and remove rooms. The application is built with a React frontend, a Node.js/Express REST API backend, and a PostgreSQL database.
 
 [View the live website here](https://hotel-btji.onrender.com)
+
+## Table of Contents
+- [User Experience (UX)](#user-experience-ux)
+- [Dataset](#dataset)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Deployment](#deployment)
+- [Testing](#testing)
+- [Credits and Acknowledgements](#credits-and-acknowledgements)
 
 ## User Experience (UX)
 
