@@ -14,12 +14,14 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/api/rooms', async (req, res) => {
+    // Get all rooms from the database
     try {
         const results = await db.query('select * from hotels order by id')
         res.status(200).json({
             status: 'success',
             rooms: results.rows
         })
+    // Catch any errors
     } catch (err) {
         res.status(500).json({
             error: 'Failed to get rooms'
@@ -28,6 +30,7 @@ app.get('/api/rooms', async (req, res) => {
 })
 
 app.post('/api/rooms', upload.single('image'), async (req, res) => {
+    // Construct query for adding a new room to the database
     const {
         name,
         type,
@@ -41,17 +44,13 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
     } = req.body;
 
     const extras = JSON.parse(req.body.extras);
-
-    let images = [
-        req.file ? req.file.path.split('/').pop(): null,
-        'details-3.jpg',
-        'details-2.jpg',
-        'details-4.jpg'
-    ];
-
+    const main_image = req.file ? req.file.path.split('/').pop(): null;
+    const details_image_1 = 'details-3.jpg';
+    const details_image_2 = 'details-2.jpg';
+    const details_image_3 = 'details-4.jpg';
     const slug = name.toLowerCase().replaceAll(' ', '-');
 
-    let fields = [
+    const fields = [
         'name',
         'slug',
         'type',
@@ -63,12 +62,15 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
         'featured',
         'description',
         'extras',
-        'images'
+        'main_image',
+        'details_image_1',
+        'details_image_2',
+        'details_image_3'
     ]
 
-    let placeholders = fields.map((value, index) => `$${index + 1}`);
+    const placeholders = fields.map((value, index) => `$${index + 1}`);
 
-    let values = [
+    const values = [
         name,
         slug,
         type,
@@ -80,21 +82,27 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
         featured,
         description,
         extras,
-        images
+        main_image,
+        details_image_1,
+        details_image_2,
+        details_image_3
     ];
 
-    let sql = `
+    const sql = `
         insert into hotels (${fields.join(', ')}) 
         values(${placeholders.join(', ')}) 
         returning *
     `;
 
-     try {
-        let results = await db.query(sql, values)
+    // Try to add the new room to the database
+    try {
+        const results = await db.query(sql, values)
         res.status(201).json({
             status: 'success',
             room: results.rows[0]
         })
+    
+    // Catch any errors
     } catch (err) {
         res.status(500).json({
             error: 'Failed to add room'
@@ -102,10 +110,11 @@ app.post('/api/rooms', upload.single('image'), async (req, res) => {
     }
 })
 
-app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {    
-    let id = req.params.id
+app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {  
+    // Construct query for adding a updating the room in the database  
+    const id = req.params.id
 
-    let {
+    const {
         name,
         type,
         price,
@@ -117,16 +126,12 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         description, 
     } = req.body;
 
-    let extras = JSON.parse(req.body.extras);
-    
-    let images = [
-        req.file ? req.file.path.split('/').pop() : null,
-        'details-3.jpg',
-        'details-2.jpg',
-        'details-4.jpg'
-    ]
-
-    let slug = name.toLowerCase().replaceAll(' ', '-');
+    const extras = JSON.parse(req.body.extras);
+    const main_image = req.file ? req.file.path.split('/').pop() : null;
+    const details_image_1 = 'details-3.jpg';
+    const details_image_2 = 'details-2.jpg';
+    const details_image_3 = 'details-4.jpg';
+    const slug = name.toLowerCase().replaceAll(' ', '-');
 
     let fields = [
         'name = $1',
@@ -156,9 +161,9 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         extras
     ];
 
-    if (images[0]) {
-        fields.push(`images = $${fields.length + 1}`);
-        values.push(images);
+    if (main_image) {
+        fields.push(`main_image = $${fields.length + 1}`);
+        values.push(main_image, details_image_1, details_image_2, details_image_3);
     }
 
     values.push(id);
@@ -170,12 +175,14 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
         returning *
     `;
 
+    // Try to update the room in the database
      try {
         const results = await db.query(sql, values)
         res.status(200).json({
             status: 'success',
             room: results.rows[0]
         })
+    // Catch any errors
     } catch (err) {
         res.status(500).json({
             error: 'Failed to update room'
@@ -184,11 +191,13 @@ app.put('/api/rooms/:id', upload.single('image'), async (req, res) => {
 })
 
 app.delete('/api/rooms/:id', async (req, res) => {
+    // Try to delete the room from the database
     try {
         await db.query('delete from hotels where id = $1', [req.params.id])
         res.status(204).json({
             status: 'success'
         });
+    // Catch any errors
     } catch (err) {
         res.status(500).json({
             error: 'Failed to delete room'
@@ -198,9 +207,11 @@ app.delete('/api/rooms/:id', async (req, res) => {
 
 
 app.get('/\{*splat}', (req, res) => {
+    // Serve the react index.html file for any route that doesn't match the API routes
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
+// Start the server and listen on the specified port
 const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
