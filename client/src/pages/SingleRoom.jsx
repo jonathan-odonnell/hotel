@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
@@ -9,20 +9,14 @@ import { RoomContext } from "../context";
 export default function SingleRoom () {
   // Gets room and error data and functions from context
   const { getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
-  const navigate = useNavigate();
   const { slug } = useParams();
   const room = getRoom(slug);
 
-  // Renders error if no room
+  // Redirects to error page if no room
   if (!room) {
     return (
-      <div className="error">
-        <h3> no such room could be found...</h3>
-        <Link to="/rooms" className="btn-primary">
-          back to rooms
-        </Link>
-      </div>
-      );
+      <Navigate to="/error" replace/>
+    );
   }
   
   // Deconstructs room data
@@ -61,7 +55,7 @@ export default function SingleRoom () {
       await axios.delete(`/api/rooms/${id}`);
       deleteRoom(id)
       updateError(null)
-      navigate('/rooms')
+      useNavigate('/rooms')
     } catch (err) {
       updateError(err.response?.data?.error || err.message);
     }
