@@ -4,16 +4,22 @@ import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { FaPenSquare, FaTrash } from "react-icons/fa"
 import StyledHero from "../components/StyledHero";
 import Banner from "../components/Banner";
+import Loading from "../components/Loading";
 import { RoomContext } from "../context";
 
 export default function SingleRoom () {
-  // Gets room and error data and functions from context
-  const { getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
+  // Gets loading, room and error data and functions from context
+  const { loading, getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
   const { slug } = useParams();
   const room = getRoom(slug);
 
+  // Renders loading component
+  if (loading) {
+    return <Loading />;
+  }
+  
   // Redirects to error page if no room
-  if (!room) {
+  if (!loading && !room) {
     return (
       <Navigate to="/error" replace/>
     );

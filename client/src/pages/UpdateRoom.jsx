@@ -1,6 +1,7 @@
 import React from "react";
 import { RoomContext } from "../context";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 import Banner from "../components/Banner";
 import StyledHero from "../components/StyledHero";
 import RoomForm from "../components/RoomForm";
@@ -8,21 +9,21 @@ import RoomFormError from "../components/RoomFormError";
 
 
 export default function UpdateRoom () {
-  // Gets room and error data and functions from context
-  const { getRoom, error } = React.useContext(RoomContext);
+  // Gets loading and error data and getRoom function from context
+  const { getRoom, loading, error } = React.useContext(RoomContext);
   // Gets slug from parameters
   const { slug } = useParams();
   const room = getRoom(slug);
 
-  // Renders error if no room
-  if (!room) {
+  // Renders loading component
+  if (loading) {
+    return <Loading />;
+  }
+  
+  // Redirects to error page if no room
+  if (!loading && !room) {
     return (
-      <div className="error">
-        <h3> no such room could be found...</h3>
-        <Link to="/rooms" className="btn-primary">
-          back to rooms
-        </Link>
-      </div>
+      <Navigate to="/error" replace/>
     );
   }
 
