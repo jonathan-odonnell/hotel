@@ -32,7 +32,7 @@ h2 {
   font-size: 2em;
   margin-bottom: 0.75em;
 }
-h3 {
+.single-room-info h2 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1em;
@@ -47,7 +47,8 @@ h5 {
   font-weight: bold;
   margin-bottom: 1.5em;
 }
-h6 {
+.room-extras h3,
+.single-room-info h3 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.5em;
@@ -400,6 +401,17 @@ input[type="file"]{
   width: 80vw;
   margin: 0 auto;
 }
+.single-room-info h2 {
+  font-size: 1.5em;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+.room-extras h3,
+.single-room-info h3 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1.5em;
+}
 .single-room-btns {
   padding-top: 5rem;
 }
@@ -456,26 +468,26 @@ input[type="file"]{
 .info {
   margin: 1rem 0;
 }
-.desc h3 {
+.desc h2 {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
 .desc p {
   line-height: 1.5;
 }
-.info h3,
-.info h6 {
+.info h2,
+.info h3 {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
-.info h6 {
+.info h3 {
   font-weight: 300;
 }
 .room-extras {
   width: 80vw;
   margin: 0 auto 3rem auto;
 }
-.room-extras h6 {
+.room-extras h3 {
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
 }
