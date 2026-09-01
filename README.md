@@ -355,3 +355,13 @@ A local clone of the project repository can be created using the following steps
 7. Press Enter to create your local clone.
 
 More information about cloning a repository is available (here)[https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository].
+
+## Credits and Acknowledgements
+
+- **Original Project Inspiration:** This project was built upon the foundation of the Beach Resort React project featured on [freeCodeCamp](https://www.freecodecamp.org/) (created by John Smilga / Coding Addict).
+- **Architecture & Technical Extensions:** While inspired by the original frontend design, this application was substantially extended into a full-stack system featuring:
+  - Custom RESTful API services built with Node.js and Express.
+  - Relational database schema design and cloud integration using PostgreSQL (Aiven).
+  - Dynamic media processing pipelines using Multer middleware and Cloudinary storage.
+  - Integration and unit testing suite implemented with Jasmine and Supertest.
+  - End-to-end room inventory management (Create, Read, Update, Delete) integrated directly into the React user interface.
