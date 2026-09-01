@@ -263,7 +263,7 @@ export default function RoomForm ({ room }) {
                 required={room ? false : true}
                 />
                 {room && <div className="current-img">
-                    <small>Current image: {room.images[0]}</small>
+                    <small>Current image: {room.main_image}</small>
                 </div>}
             </div>
             {/* image */}
