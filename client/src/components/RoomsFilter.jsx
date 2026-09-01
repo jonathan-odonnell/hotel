@@ -120,14 +120,16 @@ export default function RoomsFilter ({ rooms }) {
         {/* End of price */}
         {/* Size */}
         <div className="form-group">
-          <label htmlFor="minSize">room size </label>
+          <label htmlFor="minSize" aria-hidden="true">room size </label>
           <div className="size-inputs">
             <input
               type="number"
               name="minSize"
+              id="minSize"
               value={minSize}
               onChange={handleChange}
               className="size-input"
+              aria-label="minimum room size"
             />
             <input
               type="number"
@@ -135,6 +137,7 @@ export default function RoomsFilter ({ rooms }) {
               value={maxSize}
               onChange={handleChange}
               className="size-input"
+              aria-label="maximum room size"
             />
           </div>
         </div>
@@ -153,14 +156,15 @@ export default function RoomsFilter ({ rooms }) {
           </div>
           {/* End of breakfast */}
           {/* Pets */}
-          <div className="single-extra">
+          <div htmlFor="pets" className="single-extra">
             <input
               type="checkbox"
               name="pets"
+              id="pets"
               checked={pets}
               onChange={handleChange}
             />
-            <label htmlFor="breakfast">pets</label>
+            <label htmlFor="pets">pets</label>
           </div>
           {/* End of breakfast */}
         </div>

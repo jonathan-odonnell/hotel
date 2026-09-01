@@ -579,8 +579,8 @@ input[type="file"]{
 .size-input {
   width: 40%;
   padding: 0.2rem;
-  border: 1px solid var(--mainBlack);
-  border-radius: 0.3rem;
+  border: 1.5px solid var(--mainBlack);
+  border-radius: 0;
   margin-right: 0.3rem;
 }
 .filter-form .single-extra label {

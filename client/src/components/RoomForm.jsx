@@ -130,6 +130,7 @@ export default function RoomForm ({ room }) {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                autoComplete="off"
                 />
             </div>
             {/* End of name */}
