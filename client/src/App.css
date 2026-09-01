@@ -331,6 +331,106 @@ input[type="file"]{
 }
 /* End of Featured Rooms */
 
+/*  Rooms Fitler */
+.filter-container {
+  padding: 5rem 0 2.5rem 0;
+}
+.filter-form {
+  width: 60vw;
+  margin: 0 auto;
+  display: grid;
+}
+@media screen and (min-width: 776px) {
+  .filter-form {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-row-gap: 2rem;
+    grid-column-gap: 40px;
+  }
+}
+.size-inputs {
+  display: flex;
+}
+.size-input {
+  width: 40%;
+  padding: 0.2rem;
+  border: 1.5px solid var(--mainBlack);
+  border-radius: 0;
+  margin-right: 0.3rem;
+}
+.filter-form .single-extra label {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+.filter-form select {
+  text-transform: capitalize;
+}
+@media screen and (min-width: 776px) {
+  .filter-form {
+    width: 70vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .filter-form {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* End of Rooms Fitler */
+
+/* Roomlist */
+.add-room {
+  width: 80vw;
+  margin: 0 auto;
+}
+.add-room {
+  padding-bottom: 2.5rem;
+}
+@media screen and (min-width: 576px) {
+  .add-room {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.add-room a{
+  background-color: transparent;
+  color: var(--mainBlack);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border: none;
+  padding-right: 1.5rem; 
+}
+.add-room a:hover{
+  background-color: transparent;
+  color: var(--primaryColor);
+}
+
+.roomslist {
+  padding-bottom: 5rem;
+}
+.roomslist-center {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 30px;
+}
+@media screen and (min-width: 776px) {
+  .add-room,
+  .roomslist-center {
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .add-room
+  .roomslist-center {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* End of roomlist */
+
 /* Room */
 .room {
   box-shadow: var(--lightShadow);
@@ -339,7 +439,6 @@ input[type="file"]{
 .room:hover {
   box-shadow: var(--darkShadow);
 }
-
 .img-container {
   position: relative;
 }
@@ -360,7 +459,7 @@ input[type="file"]{
   text-align: center;
   transition: var(--mainTransition);
 }
-.price-top h6 {
+.price-top h3 {
   margin-bottom: 0;
   font-size: 0.9rem;
   font-weight: 300;
@@ -406,11 +505,15 @@ input[type="file"]{
   line-height: 1;
   margin-bottom: 1em;
 }
-.room-extras h3,
-.single-room-info h3 {
+.single-room-info h3,
+.room-extras h3 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.5em;
+}
+.room-extras h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
 }
 .single-room-btns {
   padding-top: 5rem;
@@ -487,10 +590,7 @@ input[type="file"]{
   width: 80vw;
   margin: 0 auto 3rem auto;
 }
-.room-extras h3 {
-  text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
-}
+
 .extras {
   list-style-type: none;
   display: grid;
@@ -515,106 +615,6 @@ input[type="file"]{
   }
 }
 /* End of Single Room */
-
-/* Roomlist */
-.add-room {
-  width: 80vw;
-  margin: 0 auto;
-}
-.add-room {
-  padding-bottom: 2.5rem;
-}
-@media screen and (min-width: 576px) {
-  .add-room {
-    display: flex;
-    justify-content: flex-end;
-  }
-}
-.add-room a{
-  background-color: transparent;
-  color: var(--mainBlack);
-  font-size: 1.5rem;
-  text-decoration: none;
-  border: none;
-  padding-right: 1.5rem; 
-}
-.add-room a:hover{
-  background-color: transparent;
-  color: var(--primaryColor);
-}
-
-.roomslist {
-  padding-bottom: 5rem;
-}
-.roomslist-center {
-  width: 80vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  grid-row-gap: 2rem;
-  grid-column-gap: 30px;
-}
-@media screen and (min-width: 776px) {
-  .add-room,
-  .roomslist-center {
-    width: 90vw;
-  }
-}
-@media screen and (min-width: 992px) {
-  .add-room
-  .roomslist-center {
-    width: 95vw;
-    max-width: 1170px;
-  }
-}
-/* End of roomlist */
-
-/*  Rooms Fitler */
-.filter-container {
-  padding: 5rem 0 2.5rem 0;
-}
-.filter-form {
-  width: 60vw;
-  margin: 0 auto;
-  display: grid;
-}
-@media screen and (min-width: 776px) {
-  .filter-form {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-row-gap: 2rem;
-    grid-column-gap: 40px;
-  }
-}
-.size-inputs {
-  display: flex;
-}
-.size-input {
-  width: 40%;
-  padding: 0.2rem;
-  border: 1.5px solid var(--mainBlack);
-  border-radius: 0;
-  margin-right: 0.3rem;
-}
-.filter-form .single-extra label {
-  display: inline-block;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-}
-.filter-form select {
-  text-transform: capitalize;
-}
-@media screen and (min-width: 776px) {
-  .filter-form {
-    width: 70vw;
-  }
-}
-@media screen and (min-width: 992px) {
-  .filter-form {
-    width: 95vw;
-    max-width: 1170px;
-  }
-}
-/* End of Rooms Fitler */
 
 /* Room Form */
 .room-form {

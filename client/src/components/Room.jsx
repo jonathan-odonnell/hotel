@@ -14,7 +14,7 @@ export default function Room ({ room, cloudName }) {
       <div className="img-container">
         <img src={image} alt="single room" />
         <div className="price-top">
-          <h6>£{price}</h6>
+          <h3>£{price}</h3>
           <p>per night</p>
         </div>
         <Link to={`/rooms/${slug}`} className="btn-primary room-link">
