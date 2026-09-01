@@ -1,6 +1,7 @@
 import Room from "./Room";
 
 export default function RoomsList ({ rooms }) {
+  // Renders error message if no rooms
   if (rooms.length === 0) {
     return (
       <div className="empty-search">
@@ -8,6 +9,7 @@ export default function RoomsList ({ rooms }) {
       </div>
     );
   }
+  // Renders room component for each room
   return (
     <section className="roomslist">
       <div className="roomslist-center">

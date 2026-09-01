@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import RoomsContainer from "../components/RoomsContainer";
 
 export default function Rooms () {
+  // Renders Rooms page components
   return (
     <>
       <Hero hero="rooms-hero">

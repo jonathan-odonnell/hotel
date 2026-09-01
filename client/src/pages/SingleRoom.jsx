@@ -7,11 +7,13 @@ import Banner from "../components/Banner";
 import { RoomContext } from "../context";
 
 export default function SingleRoom () {
+  // Gets room and error data and functions from context
   const { getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
   const navigate = useNavigate();
   const { slug } = useParams();
   const room = getRoom(slug);
 
+  // Renders error if no room
   if (!room) {
     return (
       <div className="error">
@@ -22,7 +24,8 @@ export default function SingleRoom () {
       </div>
       );
   }
-      
+  
+  // Deconstructs room data
   const {
       id,
       name,
@@ -39,6 +42,8 @@ export default function SingleRoom () {
       details_image_3,
   } = room;
 
+  // Handles images
+
   const detailsImages = [details_image_1, details_image_2, details_image_3];
 
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
@@ -49,6 +54,8 @@ export default function SingleRoom () {
   
   const gallery = detailsImages.map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
  
+  // Handles delete button
+  
   const handleDelete = async () => {
     try {
       await axios.delete(`/api/rooms/${id}`);
@@ -59,7 +66,7 @@ export default function SingleRoom () {
       updateError(err.response?.data?.error || err.message);
     }
   }
-
+  // Renders SingleRoom page components and HTML
   return(
       <>
       <StyledHero img={mainImg}>

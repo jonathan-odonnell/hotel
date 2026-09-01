@@ -4,10 +4,12 @@ import { FaAlignRight } from "react-icons/fa";
 import logo from "/images/logo.svg";
 
 export default function Navbar () {
+  // Sets nav icon button initial toggle state
   const [isOpen, setIsOpen] = useState(false)
   const handleToggle = () => {
     setIsOpen(!this.state.isOpen);
   };
+  // Renders navbar
   return (
     <nav className="navbar">
       <div className="nav-center">
@@ -20,7 +22,7 @@ export default function Navbar () {
             className="nav-btn"
             onClick={handleToggle}
           >
-            <FaAlignRight className="nav-icon" />
+            <FaAlignRight className="nav-icon" aria-label="navigation icon" />
           </button>
         </div>
         <ul

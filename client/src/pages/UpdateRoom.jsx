@@ -8,10 +8,13 @@ import RoomFormError from "../components/RoomFormError";
 
 
 export default function UpdateRoom () {
+  // Gets room and error data and functions from context
   const { getRoom, error } = React.useContext(RoomContext);
+  // Gets slug from parameters
   const { slug } = useParams();
   const room = getRoom(slug);
 
+  // Renders error if no room
   if (!room) {
     return (
       <div className="error">
@@ -23,10 +26,12 @@ export default function UpdateRoom () {
     );
   }
 
+  // Handles images
   const baseUrl = "https://res.cloudinary.com/dpqj015da/image/upload/v1788092352/beach-resort/"
-
+  
   const mainImg = `${baseUrl + room.main_image}` || `${baseUrl + "defaultBcg.jpg"}`
 
+  // Renders updateRoom page components
   return (
     <>
       <StyledHero img={mainImg}>
@@ -36,6 +41,7 @@ export default function UpdateRoom () {
           </Link>
         </Banner>
       </StyledHero>
+      {/* Renders errors if any */}
       {error && <RoomFormError error={error}/>}
       <RoomForm room={room} />
     </>

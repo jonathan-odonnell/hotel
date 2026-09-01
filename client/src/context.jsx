@@ -4,7 +4,7 @@ import axios from "axios"
 const RoomContext = React.createContext();
 
 class RoomProvider extends Component{
-  // state initial values
+  // State initial values
   state = {
     rooms: [],
     sortedRooms: [],
@@ -23,7 +23,7 @@ class RoomProvider extends Component{
     error: null
   };
   async componentDidMount() {
-    // get rooms from api and set states
+    // Get rooms from API and set states
       try {
         let response = await axios.get('/api/rooms')
     
@@ -45,6 +45,7 @@ class RoomProvider extends Component{
           maxSize,
           error: null,
         });
+        // Catch errors
       } catch (err) {
         this.setState({
           error: err
@@ -52,11 +53,11 @@ class RoomProvider extends Component{
       };
     };
   
-    // get room
+    // Get room
     getRoom = slug => this.state.rooms.find(
       r => r.slug === slug);
   
-    // add room
+    // Add room
     addRoom = room => {
       this.setState(prev => ({
         rooms: [...prev.rooms, room],
@@ -64,7 +65,7 @@ class RoomProvider extends Component{
       }));
     };
   
-    // update room
+    // Update room
     updateRoom = updatedRoom => {
       this.setState(prev => {
         const updatedRooms = prev.rooms.map(room =>
@@ -77,7 +78,7 @@ class RoomProvider extends Component{
       });
     };
   
-    // delete room
+    // Delete room
     deleteRoom = id => {
       this.setState(prev => {
         const updatedRooms = prev.rooms.filter(room => room.id !== id);
@@ -88,15 +89,17 @@ class RoomProvider extends Component{
       });
     };
 
-    // update error state
+    // Update error
     updateError = value => {
       this.setState({
         error: value
       });
     };
 
+
+    // Handles change of sort and filter inputs
     handleChange = event => {
-      // handles change of filter inputs
+      // Updates states
         const { name, type, checked, value } = event.target;
         this.setState(
           { 
@@ -106,6 +109,7 @@ class RoomProvider extends Component{
         );
       };
 
+      // Filters rooms based on sort and filter states
       filterRooms = () => {
         let {
           rooms,
@@ -119,41 +123,42 @@ class RoomProvider extends Component{
           sort
         } = this.state;
     
+        // Creates a copy of the rooms array
         let tempRooms = [...rooms];
 
-        // transform capacity and price values
+        // Handles capacity and price values
         capacity = parseInt(capacity);
         price = parseInt(price);
 
-        // filter by type
+        // Filter by type
         if (type !== "all") {
           tempRooms = tempRooms.filter(room => room.type === type);
         }
 
-        // filter by capacity
+        // Filter by capacity
         if (capacity !== 1) {
           tempRooms = tempRooms.filter(room => room.capacity >= capacity);
         }
         
-        // filter by price
+        // Filter by price
         tempRooms = tempRooms.filter(room => room.price <= price);
         
-        // filter by size
+        // Filter by size
         tempRooms = tempRooms.filter(
           room => room.size >= minSize && room.size <= maxSize
         );
         
-        // filter by breakfast
+        // Filter by breakfast
         if (breakfast) {
           tempRooms = tempRooms.filter(room => room.breakfast === true);
         }
         
-        // filter by pets
+        // Filter by pets
         if (pets) {
           tempRooms = tempRooms.filter(room => room.pets === true);
         }
 
-        // sort
+        // Sort based on price, name or id
 
         const sorters = {
           all: (a, b) => a.id - b.id,
@@ -171,6 +176,7 @@ class RoomProvider extends Component{
         });
       };
     render() {
+        // Provides context values to components
         return(
             <RoomContext.Provider value={{
               rooms: this.state.rooms,

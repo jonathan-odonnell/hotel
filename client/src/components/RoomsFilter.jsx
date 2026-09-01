@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { RoomContext } from "../context";
 import Title from "./Title";
-// get all unique values
+// Get all unique values
 const getUnique = (items, value) => {
   return [...new Set(items.map(item => item[value]))].sort((a, b) => {
     return a - b;
@@ -9,7 +9,7 @@ const getUnique = (items, value) => {
 };
 
 export default function RoomsFilter ({ rooms }) {
-  // context hooks
+  // Gets handle and sort data from context
   const context = useContext(RoomContext);
   const {
     handleChange,
@@ -25,7 +25,7 @@ export default function RoomsFilter ({ rooms }) {
     sort,
   } = context;
 
-  // sort options
+  // Sort options
   let sorts = {
     "default": "all",
     "name a-z": "name_asc",
@@ -39,7 +39,7 @@ export default function RoomsFilter ({ rooms }) {
     </option>
   ));
 
-  // type optionss
+  // Type optionss
   let types = getUnique(rooms, "type");
   types = ["all", ...types];
   types = types.map((item, index) => (
@@ -48,7 +48,7 @@ export default function RoomsFilter ({ rooms }) {
     </option>
   ));
 
-  // capacity options
+  // Capacity options
   let people = getUnique(rooms, "capacity");
   people = people.map((item, index) => (
     <option key={index} value={item}>
@@ -56,11 +56,12 @@ export default function RoomsFilter ({ rooms }) {
     </option>
   ));
   
+  // Renders sort and filters form
   return (
     <section className="filter-container">
       <Title title="search rooms" />
       <form className="filter-form">
-        {/* sort */}
+        {/* Sort */}
         <div className="form-group">
           <label htmlFor="sort">sort</label>
           <select
@@ -73,8 +74,8 @@ export default function RoomsFilter ({ rooms }) {
             {sorts}
           </select>
         </div>
-        {/* end of sort */}
-        {/* type */}
+        {/* End of sort */}
+        {/* Type */}
         <div className="form-group">
           <label htmlFor="type">room type</label>
           <select
@@ -87,8 +88,8 @@ export default function RoomsFilter ({ rooms }) {
             {types}
           </select>
         </div>
-        {/* end of type */}
-        {/* guests  */}
+        {/* End of type */}
+        {/* Guests  */}
         <div className="form-group">
           <label htmlFor="capacity">Guests</label>
           <select
@@ -101,8 +102,8 @@ export default function RoomsFilter ({ rooms }) {
             {people}
           </select>
         </div>
-        {/* end of guests */}
-        {/* room price */}
+        {/* End of guests */}
+        {/* Price */}
         <div className="form-group">
           <label htmlFor="price">room price £{price}</label>
           <input
@@ -116,10 +117,10 @@ export default function RoomsFilter ({ rooms }) {
             className="form-control"
           />
         </div>
-        {/* end of room price */}
-        {/* size */}
+        {/* End of price */}
+        {/* Size */}
         <div className="form-group">
-          <label htmlFor="price">room size </label>
+          <label htmlFor="minSize">room size </label>
           <div className="size-inputs">
             <input
               type="number"
@@ -137,9 +138,9 @@ export default function RoomsFilter ({ rooms }) {
             />
           </div>
         </div>
-        {/* end of select type */}
-        {/* extras */}
+        {/* End of size */}
         <div className="form-group">
+          {/* Breakfast */}
           <div className="single-extra">
             <input
               type="checkbox"
@@ -150,6 +151,8 @@ export default function RoomsFilter ({ rooms }) {
             />
             <label htmlFor="breakfast">breakfast</label>
           </div>
+          {/* End of breakfast */}
+          {/* Pets */}
           <div className="single-extra">
             <input
               type="checkbox"
@@ -159,8 +162,8 @@ export default function RoomsFilter ({ rooms }) {
             />
             <label htmlFor="breakfast">pets</label>
           </div>
+          {/* End of breakfast */}
         </div>
-        {/* end of extras type */}
       </form>
     </section>
   );

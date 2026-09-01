@@ -6,6 +6,7 @@ import { RoomProvider } from "./context";
 
 const root = createRoot(document.getElementById("root"));
 
+// Renders the App component
 root.render(
   <RoomProvider>
     <BrowserRouter>

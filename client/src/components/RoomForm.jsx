@@ -5,9 +5,10 @@ import axios from "axios";
 
 
 export default function RoomForm ({ room }) {
+    // Gets room functions from context
     const navigate = useNavigate();
     const { addRoom, updateRoom, updateError } = React.useContext(RoomContext);
-    // form data initial state
+    // Sets form data initial state
     const [formData, setFormData] = useState({
         name: room?.name || "",
         type: room?.type || "single",
@@ -20,7 +21,7 @@ export default function RoomForm ({ room }) {
         description: room?.description || "",
         extras: room?.extras || [],
     });
-    // update state when room loads
+    // Update state when room loads
     useEffect(() => {
         if (room) {
             setFormData({
@@ -37,21 +38,21 @@ export default function RoomForm ({ room }) {
             });
         }
     }, [room]);
-    // types
+    // Handle types
     let typesOptions = ["single", "double", "family", "presidential"]
     typesOptions = typesOptions.map((item, index) => (
         <option key={index} value={item}>
         {item}
         </option>
     ));
-    // capacity
+    // Handle capacity
     let capacityOptions = [...Array(10).keys()].map(i => i + 1);
     capacityOptions = capacityOptions.map((item, index) => (
         <option key={index} value={item}>
         {item}
         </option>
     ));
-    // extras
+    // Handle extras
     let extrasOptions = [
         "Plush pillows and breathable bed linens",
         "Soft, oversized bath towels",
@@ -65,7 +66,7 @@ export default function RoomForm ({ room }) {
         {item}
         </option>
     ));
-    // handle change of inputs 
+    // Handle change of inputs 
     const handleChange = (e) => {
         const { name, value, type, checked, options } = e.target;
         if (type === "select-multiple") {
@@ -78,9 +79,10 @@ export default function RoomForm ({ room }) {
             }));
         }
     }; 
-    // handle form submit
+    // Handle form submit
     let handleSubmit = async (e) => {
         try {
+            // Update form values
             e.preventDefault();
             const { breakfast, pets, featured, extras } = formData;
             let rawFormData = new FormData(e.target);
@@ -90,29 +92,34 @@ export default function RoomForm ({ room }) {
             rawFormData.delete("extras");
             rawFormData.append("extras", JSON.stringify(extras));
 
+            // Handle image file
             const imageFile = rawFormData.get("image");
             if (!imageFile || imageFile.size === 0) {
                 rawFormData.delete("image");
             }
 
             if (room) {
+                // Update room API call and response handling
                 const response = await axios.put(`/api/rooms/${room.id}`, rawFormData);
                 updateRoom(response.data.room);
                 updateError(null);
                 navigate(`/rooms/${response.data.room.slug}`);
             } else {
+                // Add room API call and response handling
                 const response = await axios.post("/api/rooms", rawFormData);
                 addRoom(response.data.room);
                 updateError(null);
                 navigate('/rooms');
             }
         } catch (err) {
+            // Catch errors 
             updateError(err.response?.data?.error || err.message);
         }
     }
+    // Renders room form
     return (
         <form className="room-form" encType="multipart/form-data" onSubmit={handleSubmit}>
-            {/* name */}
+            {/* Name */}
             <div className="form-group">
                 <label htmlFor="name">room name</label>
                 <input 
@@ -125,8 +132,8 @@ export default function RoomForm ({ room }) {
                 required
                 />
             </div>
-            {/* end name */}
-            {/* types */}
+            {/* End of name */}
+            {/* Types */}
             <div className="form-group">
                 <label htmlFor="type">room type</label>
                 <select
@@ -140,8 +147,8 @@ export default function RoomForm ({ room }) {
                 {typesOptions}
                 </select>
             </div>
-            {/* end types */}
-            {/* price */}
+            {/* End of types */}
+            {/* Price */}
             <div className="form-group">
                 <label htmlFor="price">room price £</label>
                 <input 
@@ -156,8 +163,8 @@ export default function RoomForm ({ room }) {
                 required
                 />
             </div>
-            {/* end price */}
-            {/* size */}
+            {/* End of price */}
+            {/* Size */}
             <div className="form-group">
                 <label htmlFor="size">room size Sqft</label>
                 <input 
@@ -172,8 +179,8 @@ export default function RoomForm ({ room }) {
                 required
                 />
             </div>
-            {/* end price */}
-            {/* guests  */}
+            {/* End of size */}
+            {/* Guests */}
             <div className="form-group">
                 <label htmlFor="capacity">guests</label>
                 <select
@@ -187,8 +194,8 @@ export default function RoomForm ({ room }) {
                 {capacityOptions}
                 </select>
             </div>
-            {/* end of guests */}
-            {/* pets */}
+            {/* End of guests */}
+            {/* Pets */}
             <div className="form-group single-extra">
                 <label htmlFor="pets">pets</label>
                 <input
@@ -199,8 +206,8 @@ export default function RoomForm ({ room }) {
                 onChange={handleChange}
                 />
             </div>
-            {/* end pets */}
-            {/* breakfast */}
+            {/* End of pets */}
+            {/* Breakfast */}
             <div className="form-group single-extra">
                 <label htmlFor="breakfast">breakfast</label>
                 <input
@@ -211,8 +218,8 @@ export default function RoomForm ({ room }) {
                 onChange={handleChange}
                 />
             </div>
-            {/* end breakfast */}
-            {/* featured */}
+            {/* End of breakfast */}
+            {/* Featured */}
             <div className="form-group single-extra">
                 <label htmlFor="featured">featured room</label>
                 <input
@@ -223,8 +230,8 @@ export default function RoomForm ({ room }) {
                 onChange={handleChange}
                 />
             </div>
-            {/* end featured */}
-            {/* description */}
+            {/* End of featured */}
+            {/* Description */}
             <div className="form-group">
                 <label htmlFor="description">description</label>
                 <textarea 
@@ -235,8 +242,8 @@ export default function RoomForm ({ room }) {
                 required
                 />
             </div>
-            {/* end description */}
-            {/* extras  */}
+            {/* End of description */}
+            {/* Extras  */}
             <div className="form-group">
                 <label htmlFor="extras">extras</label>
                 <select
@@ -251,8 +258,8 @@ export default function RoomForm ({ room }) {
                 {extrasOptions}
                 </select>
             </div>
-            {/* end of extras */}
-            {/* image */}
+            {/* End of extras */}
+            {/* Image */}
             <div className="form-group">
                 <label htmlFor="image">Image</label>
                 <input
@@ -266,13 +273,14 @@ export default function RoomForm ({ room }) {
                     <small>Current image: {room.main_image}</small>
                 </div>}
             </div>
-            {/* image */}
-            {/* button */}
+            {/* End of image */}
+            {/* Submit button with the appropriate text */}
             <div className="form-group btn-center">
                 <button className="btn-primary" type="submit">
                     {room ? "update room" : "add room"}
                 </button>
             </div>
+            {/* End of submit button */}
         </form>
     );
 };

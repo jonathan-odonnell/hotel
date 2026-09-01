@@ -3,6 +3,7 @@ import { FaCocktail, FaHiking, FaShuttleVan, FaBeer } from "react-icons/fa"
 import Title from "./Title"
 
 export default function Services () {
+    // Services data
     const services =[
         {
             icon: <FaCocktail/>,
@@ -29,6 +30,7 @@ export default function Services () {
             "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias molestias eius libero?"
         }
     ]
+    // Renders card for each service
     return(
         <section className="services">
             <Title title="Services" />

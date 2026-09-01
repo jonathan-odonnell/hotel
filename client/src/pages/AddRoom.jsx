@@ -7,7 +7,9 @@ import RoomForm from "../components/RoomForm";
 import RoomFormError from "../components/RoomFormError";
 
 export default function AddRoom () {
+  // Gets any errors from context
   const { error } = React.useContext(RoomContext);
+  // Renders AddRoom page components
   return (
     <>
       <Hero hero="add-room-hero">
@@ -17,6 +19,7 @@ export default function AddRoom () {
           </Link>
         </Banner>
       </Hero>
+      {/* Renders errors if any */}
       {error && <RoomFormError error={error}/>}
       <RoomForm />
     </>

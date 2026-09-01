@@ -5,6 +5,7 @@ import Room from "./Room";
 import Title from "./Title";
 
 export default function FeaturedRooms () {
+    // gets featured rooms from context and renders room component for each room
     let { loading, featuredRooms:rooms } = React.useContext(RoomContext);
     rooms = rooms.map(room => {
         return <Room key={room.id} room={room}/>
