@@ -13,6 +13,11 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(cors())
 app.use(express.json())
 
+app.get('/api/config/cloudinary', (req, res) => {
+    // Returns the Cloudinary cloud name
+    res.json({ cloudName: process.env.CLOUD_NAME });
+});
+
 app.get('/api/rooms', async (req, res) => {
     // Get all rooms from the database
     try {
