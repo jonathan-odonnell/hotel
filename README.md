@@ -24,15 +24,11 @@ Beach Resort is a full-stack hotel rooms platform based in the United Kingdom. T
 - The primary palette features warm coastal tones: soft off-white, deep navy blue, warm sand/gold accents, and charcoal text.
 - High contrast ensures readability and gives the resort a clean, luxurious aesthetic.
 
-### Typography
-
 #### Typography
 
 - **Primary Font:** Verdana (supported by Geneva and Tahoma fallback options).
 - **Fallback:** Sans-serif is used as the generic fallback in the event that primary fonts fail to render.
 - This font stack was chosen for its clean, highly legible design across all device displays and screen sizes.
-
-### Imagery
 
 #### Imagery
 
@@ -47,17 +43,17 @@ The initial dataset is stored in `server/data.json` and automatically seeded int
 
 ### Fields
 
-The dataset includes the following fields for each room: id, name, slug, type, price, size, capacity, pets, breakfast, featured, description, extras, main_image, details_image_1, details_image_2, and details_image_3.
+The dataset includes the following fields for each room: `id`, `name`, `slug`, `type`, `price`, `size`, `capacity`, `pets`, `breakfast`, `featured`, `description`, `extras`, `main_image`, `details_image_1`, `details_image_2`, and `details_image_3`.
 
 ### Data Integrity
 
 - **Numeric Validation:** Prices are enforced between **£100 and £1000**, room sizes between **200 and 1000 sq ft**, and capacity limits between **1 and 10 guests** directly via database check rules (`CHECK`).
-* **Array Type Handling:** The `extras` field utilizes native PostgreSQL array types (`VARCHAR[]`), allowing dynamic list operations without needing an additional table.
-* **Auto-Increment Alignment:** When seeding with explicit `id` parameters from `data.json`, the startup script executes `setval('hotels_id_seq', MAX(id))` to ensure key sequence integrity for subsequent creation requests.
+- **Array Type Handling:** The `extras` field utilizes native PostgreSQL array types (`VARCHAR[]`), allowing dynamic list operations without needing an additional table.
+- **Auto-Increment Alignment:** When seeding with explicit `id` parameters from `server/data.json`, the startup script executes `setval('hotels_id_seq', MAX(id))` to ensure key sequence integrity for subsequent creation requests.
 
 ### Entity Relationship Diagram
 
-The (Entity Relationship Diagram)[client/public/images/ED_Diagram.png] show further of each field contained in the hotels table in the database. 
+The [Entity Relationship Diagram](client/public/images/ED_Diagram.png) shows further details of each field contained in the hotels table in the database. 
 
 ## Features
 
@@ -84,18 +80,20 @@ The (Entity Relationship Diagram)[client/public/images/ED_Diagram.png] show furt
     - This highlights the key guest amenities offered by the resort (such as complimentary cocktails, endless hiking trails, free shuttle transport, and premium refreshments).
     - Each service card features a visual icon, clear titles, and a descriptive summary to familiarise guests with the resort experience upon landing on the home page.
 
-6. Room Search, Filter, and Sorting System
+6. Room Filter, and Sorting System
 
     - This allows users to filter room listings dynamically based on criteria such as room type, maximum capacity, price range, room size, and specific amenities (pets allowed or breakfast included).
     - It also provides sorting functionality, allowing users to reorder displayed rooms by price (low-to-high or high-to-low) or alphabetically by room name.
 
-7. Room Details Page
+7. Rooms List & Interactive Cards
 
-    - This provides comprehensive information about a selected room, including its price, size, guest capacity, full text description, a list of additional amenities, and a image gallery showcasing multiple room photos.
+    - This presents users with a dynamic grid of room cards, each displaying the room's main photo and price.
+    - Hovering over a room card smoothly displays an interactive features link, allowing users to navigate directly to that specific room's detail page.
 
-8. Room Management Dashboard
 
-    - This provides administrators with a structured overview table of all room listings currently saved in the PostgreSQL database, displaying key room specifications alongside actions to manage each entry.
+8. Room Details Page
+
+    - This provides comprehensive information about a selected room, including its price, size, guest capacity, full text description, a list of additional amenities, and an image gallery showcasing multiple room photos.
 
 9. Add Room Form
 
@@ -143,53 +141,53 @@ The (Entity Relationship Diagram)[client/public/images/ED_Diagram.png] show furt
 
 ### Languages Used
 
-1. [HTML5:](https://en.wikipedia.org/wiki/HTML5/)
-    - HTML5 was used for the sturcture of the webpages.
-2. [CSS3:](https://en.wikipedia.org/wiki/Cascading_Style_Sheets/)
-   - CSS3 was used for the styling of the webpages.
-3. [JavaScript:](https://en.wikipedia.org/wiki/JavaScript/)
-   - JavaScript was used for the interactive features on the webpages.
+1. [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
+    - HTML5 was used for the structure of the web pages.
+2. [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+   - CSS3 was used for the styling of the web pages.
+3. [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+   - JavaScript was used for the backend API and interactive features on the web pages.
 
 ### Frameworks, Libraries & Tools Used
 
-1. [React](https://react.dev/)
+1. [React](https://react.dev)
     - React was used as the core frontend JavaScript library for building the component-based user interface and managing application state.
-2. [Vite](https://vitejs.dev/)
+2. [Vite](https://vitejs.dev)
     - Vite was used as the frontend build tool and development server for fast module bundling and local environment setup.
-3. [React Router DOM](https://reactrouter.com/)
-    - React Router DOM was used to handle client-side routing, navigation between pages (Home, Rooms, Single Room, Admin Dashboard), and managing dynamic URL parameters.
-4. [Axios](https://axios-http.com/)
+3. [React Router DOM](https://reactrouter.com)
+    - React Router DOM was used to handle client-side routing, navigation between pages (Home, Rooms, Single Room, Add Room, Update Room), and managing dynamic URL parameters.
+4. [Axios](https://axios-http.com)
     - Axios was used as the HTTP client to send asynchronous requests between the React frontend and the Express REST API backend.
-5. [Styled Components](https://styled-components.com/)
+5. [Styled Components](https://styled-components.com)
     - Styled Components was used to write CSS-in-JS for component-level styling, dynamic themes, and isolated CSS scoping across the application.
-6. [Node.js](https://nodejs.org/)
+6. [Node.js](https://nodejs.org)
     - Node.js was used as the JavaScript runtime environment for the backend server.
-7. [Express](https://expressjs.com/)
+7. [Express](https://expressjs.com)
     - Express was used as the backend web application framework to build the REST API endpoints, handle HTTP requests, and execute database queries.
-8. [node-postgres (pg)](https://node-postgres.com/)
+8. [node-postgres (pg)](https://node-postgres.com)
     - `pg` was used as the PostgreSQL client for Node.js to manage database connections, connection pooling, and parameterised SQL queries.
-9. [Aiven](https://aiven.io/)
+9. [Aiven](https://aiven.io)
     - A cloud-hosted PostgreSQL database provided by Aiven was used for storing all application relational data, including room specifications, constraints, and array types.
-10. [Cloudinary](https://cloudinary.com/)
+10. [Cloudinary](https://cloudinary.com)
     - Cloudinary was used to store and serve optimized image assets uploaded through the admin room management interface.
 11. [Multer](https://github.com/expressjs/multer) & [multer-storage-cloudinary](https://github.com/dsvick/multer-storage-cloudinary)
     - Multer was used as middleware for handling multipart/form-data file uploads and streaming room images directly to Cloudinary.
-12. [Jasmine](https://jasmine.github.io/) & [Supertest](https://github.com/ladjs/supertest)
+12. [Jasmine](https://jasmine.github.io) & [Supertest](https://github.com/ladjs/supertest)
     - Jasmine and Supertest were used to write and execute automated integration and unit tests for the backend API endpoints.
-13. [Font Awesome](https://fontawesome.com/)
+13. [Font Awesome](https://fontawesome.com)
     - Font Awesome icons were used throughout the interface to improve visual cues and user experience.
-14. [Render](https://render.com/)
+14. [Render](https://render.com)
     - Render was used to host and deploy the web application and API service.
-15. [Git](https://git-scm.com/)
+15. [Git](https://git-scm.com)
     - Git was used for version control throughout development.
-16. [GitHub](https://github.com/)
+16. [GitHub](https://github.com)
     - GitHub was used to host the source code repository and manage automated CI workflows.
-17. [dbdiagram.io](https://dbdiagram.io/)
+17. [dbdiagram.io](https://dbdiagram.io)
     - dbdiagram.io was used to generate DBML schema specifications and Entity Relationship Diagrams for the database architecture.
 
 ## Testing
 
-### WC3 Validation
+### W3C Validation
 
 The W3C Markup Validator and W3C CSS Validator services were used to validate the code in all HTML and CSS files to ensure that they were in compliance with the HTML5 and CSS3 standards and that there were no syntax errors.
 
@@ -199,7 +197,7 @@ The JSHint validator services were used to validate the code in all JavaScript f
 
 ### Lighthouse Accessibility Testing
 
-The Google Lighthouse accessibility test was used to ensure that every page of the website complies with acessibility standards. No errors were identified.
+The Google Lighthouse accessibility test was used to ensure that every page of the website complies with accessibility standards. No errors were identified.
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -236,7 +234,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
     - Clicking on any room card routes the user to a dedicated Single Room page via dynamic React Router parameters (`/rooms/:slug`).
     - The page renders a comprehensive narrative description alongside detailed specs including exact price, size, capacity, and amenity policies.
     - A bulleted list displays all extra amenities parsed directly from the PostgreSQL `extras` array column.
-    - The hero image and detials image gallery renders multiple photos loaded directly from Cloudinary media storage.
+    - The hero image and details image gallery renders multiple photos loaded directly from Cloudinary media storage.
 
 6. As a site administrator, I want to add new rooms to the system with image uploads, capacity limits, and pricing details.
 
@@ -272,7 +270,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
 2. Font Awesome icons were failing to render across specific components
 
-    - Fixed broken incorret icon synax in services data which was causing the images to fail to render.
+    - Fixed broken, incorrect icon syntax in services data which was causing the images to fail to render.
 
 3. Room images were not processing correctly during add/update actions
 
@@ -285,7 +283,7 @@ The Google Lighthouse accessibility test was used to ensure that every page of t
 
 5. Room filtering and sorting controls were not updating the displayed results correctly
 
-    - Resolved an issue with the sort and filer logic in the context to ensure that the sorting and filters were being applied correctly to ensure smooth real-time list filtering and sorting.
+    - Resolved an issue with the sort and filter logic in the context to ensure that the sorting and filters were being applied correctly to ensure smooth real-time list filtering and sorting.
 
 ## Deployment
 
@@ -303,13 +301,13 @@ The application is deployed on Render using the following steps:
    npm install && npm run build
     ```
 7. Specify the start command:
-    ```Bash
+    ```bash
     node server/app.js
     ```
 8. Scroll down to the Environment Variables section and add the required configuration keys (DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, CLOUD_NAME, CLOUDINARY_KEY, CLOUDINARY_SECRET).
 9. Click Create Web Service to start the build and deployment process.
 
-More information about deploying web applications to Render is available (here)[https://render.com/docs/deploy-node-express-app].
+More information about deploying web applications to Render is available [here](https://render.com/docs/deploy-node-express-app).
 
 ### Running Locally
 
@@ -318,16 +316,16 @@ To run the application on your local machine, follow these steps:
 1. Ensure Node.js and npm are installed on your machine.
 2. Open your terminal and navigate to the project root directory.
 3. Install all project dependencies by running:
-    ```Bash
+    ```bash
     npm install
     ```
 4. Create a .env file in the root directory and configure your local environment variables (PostgreSQL connection parameters and Cloudinary API credentials).
 5. Replace the ca.pem file with your database security certificate in ```server/db```
 6. Start the server by running:
-    ```Bash
+    ```bash
     node server/app.js
     ```
-7. Open your web browser and navigate to http://localhost:5000 (or your configured PORT) to view the application.
+7. Open your web browser and navigate to http://localhost:3000 (or your configured PORT) to view the application.
 
 ### Forking the GitHub Repository
 
@@ -337,7 +335,8 @@ The GitHub repository can be forked to make a copy without affecting the origina
 2. Located at the top-right of the page, click the Fork button.
 3. Select an owner account and specify a repository name.
 4. Click Create fork to create the copy under your GitHub account.
-5. More information about forking a GitHub repository is available here.
+
+More information about forking a GitHub repository is available [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
 ### Making a Local Clone
 
@@ -349,12 +348,12 @@ A local clone of the project repository can be created using the following steps
 4. Open your terminal interface.
 5. Change the current working directory to the directory where you want the cloned repository saved.
 6. Type git clone followed by the URL you copied in Step 3:
-    ```Bash
-    git clone [https://github.com/your-username/beach-resort.git](https://github.com/your-username/beach-resort.git)
+    ```bash
+    git clone https://github.com/jonathan-odonnell/beach-resort.git
     ```
 7. Press Enter to create your local clone.
 
-More information about cloning a repository is available (here)[https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository].
+More information about cloning a repository is available [here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
 ## Credits and Acknowledgements
 
