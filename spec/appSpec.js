@@ -3,6 +3,8 @@ const runner = new Jasmine();
 const request = require('supertest');
 const app = require('../server/app');
 const db = require('../server/db/db');
+const path = require('path');
+const storage = require('../server/storage/storage');
 
 
 describe("Rooms data API tests", () => {
@@ -28,7 +30,18 @@ describe("Rooms data API tests", () => {
         const fakeRooms = [
             { name: 'double deluxe' },
         ];
+        const dummyFilePath = path.join(__dirname, '../client/public/images/room-1.jpeg');
         spyOn(db, 'query').and.returnValue(Promise.resolve({ rows: fakeRooms }));
+        spyOn(storage, '_handleFile').and.callFake((req, file, cb) => {
+            const filename = path.parse(file.originalname).name;
+            file.stream.resume();
+            cb(null, {
+                path: `beach-resort/${filename}`,
+                filename: filename,
+                public_id: `beach-resort/${filename}`,
+                size: 1024
+            });
+        });
         const res = await request(app)
             .post('/api/rooms')
             .field('name', 'double deluxe')
@@ -41,6 +54,7 @@ describe("Rooms data API tests", () => {
             .field('featured', false)
             .field('description', 'test description')
             .field('extras', JSON.stringify(['an extra']))
+            .attach('image', dummyFilePath);
             ;
         expect(res.status).toBe(201);
         expect(res.body.room).toBeDefined();
