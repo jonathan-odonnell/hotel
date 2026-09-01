@@ -180,9 +180,9 @@ The [Entity Relationship Diagram](client/public/images/ER_Diagram.png) shows fur
     - A cloud-hosted PostgreSQL database provided by Aiven was used for storing all application relational data, including room specifications, constraints, and array types.
 10. [Cloudinary](https://cloudinary.com)
     - Cloudinary was used to store and serve optimized image assets uploaded through the admin room management interface.
-11. [Multer](https://github.com/expressjs/multer) & [multer-storage-cloudinary](https://github.com/dsvick/multer-storage-cloudinary)
+11. [Multer](https://github.com/expressjs/multer) and [multer-storage-cloudinary](https://github.com/dsvick/multer-storage-cloudinary)
     - Multer was used as middleware for handling multipart/form-data file uploads and streaming room images directly to Cloudinary.
-12. [Jasmine](https://jasmine.github.io) & [Supertest](https://github.com/ladjs/supertest)
+12. [Jasmine](https://jasmine.github.io) and [Supertest](https://github.com/ladjs/supertest)
     - Jasmine and Supertest were used to write and execute automated integration and unit tests for the backend API endpoints.
 13. [Font Awesome](https://fontawesome.com)
     - Font Awesome icons were used throughout the interface to improve visual cues and user experience.
