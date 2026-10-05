@@ -32,7 +32,7 @@ class RoomProvider extends Component{
 
         const rooms = roomsResponse.data.rooms;
         
-        const cloudName = configResponse.data.cloudName;
+        const cloudinaryUrl = configResponse.data.cloudinaryUrl;
 
         const featuredRooms = rooms.filter(room => room.featured === true);
 
@@ -48,7 +48,7 @@ class RoomProvider extends Component{
           price: maxPrice,
           maxPrice,
           maxSize,
-          cloudName,
+          cloudinaryUrl,
           error: null,
         });
         // Catch errors
@@ -200,7 +200,7 @@ class RoomProvider extends Component{
               pets: this.state.pets,
               sort: this.state.sort,
               error: this.state.error,
-              cloudName: this.state.cloudName,
+              cloudinaryUrl: this.state.cloudinaryUrl,
               getRoom: this.getRoom,
               addRoom: this.addRoom,
               updateRoom: this.updateRoom,

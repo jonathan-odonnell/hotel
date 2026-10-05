@@ -14,8 +14,9 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/api/config/cloudinary', (req, res) => {
-    // Returns the Cloudinary cloud name
-    res.json({ cloudName: process.env.CLOUD_NAME });
+    // Returns the Cloudinary base URL
+    const cloudinaryUrl = `https://res.cloudinary.com/${process.env.CLOUD_NAME}/image/upload/v1788092352/beach-resort/`
+    res.json({ cloudinaryUrl });
 });
 
 app.get('/api/rooms', async (req, res) => {
