@@ -8,8 +8,8 @@ import Loading from "../components/Loading";
 import { RoomContext } from "../context";
 
 export default function SingleRoom () {
-  // Gets loading, cloud name, room and error data and functions from context
-  const { loading, cloudName, getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
+  // Gets loading, cloudinary URL, room and error data and functions from context
+  const { loading, cloudinaryUrl, getRoom, deleteRoom, error, updateError } = React.useContext(RoomContext);
   const { slug } = useParams();
   const room = getRoom(slug);
 
@@ -46,13 +46,11 @@ export default function SingleRoom () {
 
   const detailsImages = [details_image_1, details_image_2, details_image_3];
 
-  const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload/v1788092352/beach-resort/`
-
   const defaultImg = "room-1.jpg"
 
-  const mainImg = `${baseUrl + main_image}` || `${baseUrl + defaultImg}`
+  const mainImg = `${cloudinaryUrl + main_image}` || `${cloudinaryUrl + defaultImg}`
   
-  const gallery = detailsImages.map(img => `${baseUrl + img}`) || `${baseUrl + defaultImg}`
+  const gallery = detailsImages.map(img => `${cloudinaryUrl + img}`) || `${cloudinaryUrl + defaultImg}`
  
   // Handles delete button
   
