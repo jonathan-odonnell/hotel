@@ -201,7 +201,7 @@ The [Entity Relationship Diagram](client/public/images/ER_Diagram.png) shows fur
 
 The W3C Markup Validator and W3C CSS Validator services were used to validate the code in all HTML and CSS files to ensure that they were in compliance with the HTML5 and CSS3 standards and that there were no syntax errors.
 
-### PEP8 and JSHint Validation
+### JSHint Validation
 
 The JSHint validator services were used to validate the code in all JavaScript files to ensure that they were in compliance with the relevant standards and that there were no syntax errors. No errors were identified. 
 
