@@ -5,10 +5,10 @@ import Room from "./Room";
 import Title from "./Title";
 
 export default function FeaturedRooms () {
-    // Gets loading, cloud name and featured rooms from context and renders room component for each room
-    let { loading, cloudName, featuredRooms:rooms } = React.useContext(RoomContext);
+    // Gets loading, cloudinary URL and featured rooms from context and renders room component for each room
+    let { loading, cloudinaryUrl, featuredRooms:rooms } = React.useContext(RoomContext);
     rooms = rooms.map(room => {
-        return <Room key={room.id} room={room} cloudName={cloudName}/>
+        return <Room key={room.id} room={room} cloudinaryUrl={cloudinaryUrl}/>
     });
     return(
         <section className="featured-rooms">
